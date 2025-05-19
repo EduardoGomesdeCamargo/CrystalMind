@@ -10,10 +10,13 @@
 }
 
 body {
+  background-color: #ffffff;
   margin: 0;
   padding: 0;
   font-family: "Poppins";
   overflow-x: hidden;
+  
+
 }
 
 
@@ -87,16 +90,22 @@ body {
 .conteudoinicial {
   padding: 100px;
   padding-top: 200px;
-  background-image: url(/public/Assets/backgroundBeach.png);
 }
 
+  .imagem-steve{
+    width: 100%;
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
 
-.bloco-conteudo {
+/* .bloco-conteudo {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 30px;
-}
+} */
 
 .titulo {
   color: black;
