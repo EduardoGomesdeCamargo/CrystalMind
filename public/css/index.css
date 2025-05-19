@@ -15,11 +15,11 @@ body {
   padding: 0;
   font-family: "Poppins";
   overflow-x: hidden;
-  
+
 
 }
 
-
+/* ------------------------------------ MENU -------------------------------- */
 .header {
   position: fixed;
   top: 0;
@@ -55,7 +55,7 @@ body {
 
 
 .logo img {
-  height: 70px;
+  height: 50px;
 }
 
 .nav-list {
@@ -81,24 +81,35 @@ body {
   color: rgb(255, 255, 255);
   border: 2px solid var(--rosa);
 }
+
 .pagina-atual {
   text-decoration: underline;
   font-weight: bolder;
   color: var(--rosa);
 }
 
+/* -------------------------------INDEX PRIMEIRA PARTE----------------------------------- */
 .conteudoinicial {
   padding: 100px;
   padding-top: 200px;
 }
+.conteudoinicial button{
+  width: 180px;
+  height: 50px;
+  background-color: rgba(255, 255, 255, 0.628);
+  border-radius: 200px;
+  color: #000000b5;
+  font-size: 17px;
+  font-weight: bolder;
+}
 
-  .imagem-steve{
-    width: 100%;
-    z-index: -1;
-    position: absolute;
-    top: 0;
-    left: 0;
-  }
+.img-backgroundBeach {
+  width: 100%;
+  z-index: -1;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
 
 /* .bloco-conteudo {
   display: flex;
@@ -108,19 +119,19 @@ body {
 } */
 
 .titulo {
-  color: black;
+  color: rgb(255, 255, 255);
   font-size: 70px;
   font-weight: bolder;
-  margin: 0 0 10px 0;
 }
 
 .subtitulo {
+  
+  color: rgb(255, 255, 255);
   font-size: 25px;
   font-weight: normal;
-  margin: 0;
 }
 
-.galinha {
+/* .galinha {
   position: absolute;
   top: 97px;
   right: 0;
@@ -130,9 +141,9 @@ body {
 .galinha img {
   height: 370px;
   display: block;
-}
+} */
 
-.linha-sobreposta {
+/* .linha-sobreposta {
   position: absolute;
   top: calc(170px + 300px - 4px);
   left: 0;
@@ -140,17 +151,21 @@ body {
   height: 2px;
   background-color: var(--cinzaescuro);
   z-index: 2;
-}
+} */
 
-.beneficios-container {
+
+/* -------------------------------INDEX SEGUNDA PARTE----------------------------------- */
+.steven-universe {
+  margin-top: 150px;
   display: flex;
-  justify-content: space-between;
+  justify-content: space-around;
   flex-wrap: wrap;
   padding: 20px;
   gap: 20px;
 }
 
-.beneficio {
+.conteudo-steven-universe {
+
   flex: 1 1 250px;
   max-width: 300px;
   padding: 15px;
