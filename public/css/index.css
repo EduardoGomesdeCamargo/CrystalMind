@@ -2,7 +2,7 @@
 
 :root {
   --azul: #32b9cd;
-  --amarelo: #fff45c;
+  --rosa: #fa5d92;
   --branco: #ffffff;
   --preto: #000000;
   --cinza: #141414;
@@ -13,7 +13,6 @@ body {
   margin: 0;
   padding: 0;
   font-family: "Poppins";
-  background-color: var(--cinza);
   overflow-x: hidden;
 }
 
@@ -25,19 +24,30 @@ body {
   width: 100%;
   background-color: rgb(255, 255, 255);
   z-index: 1000;
+  display: flex;
+  justify-content: space-between;
 }
 
 
-.navbar {
+/* .navbar {
   display: flex;
-  justify-content: flex-end;
   align-items: center;
   padding: 10px 30px;
-}
+} */
 
 .logo-position {
   display: flex;
   justify-content: flex-start;
+  align-items: center;
+  padding: 10px 30px;
+}
+
+.lista {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 30px;
+
 }
 
 
@@ -53,31 +63,31 @@ body {
   margin: 0;
 }
 
-
-.right-links {
-  display: flex;
-  justify-content: flex-end;
-}
-
 .nav-list li a {
   padding: 10px 15px;
   border: none;
   border-radius: 8px;
-  color: var(--amarelo);
+  color: var(--rosa);
   text-decoration: none;
   transition: 0.3s;
   background-color: transparent;
 }
 
 .nav-list li a:hover {
-  background-color: var(--amarelo);
-  color: black;
-  border: 2px solid var(--amarelo);
+  background-color: var(--rosa);
+  color: rgb(255, 255, 255);
+  border: 2px solid var(--rosa);
+}
+.pagina-atual {
+  text-decoration: underline;
+  font-weight: bolder;
+  color: var(--rosa);
 }
 
 .conteudoinicial {
-  padding: 50px;
-  padding-top: 140px;
+  padding: 100px;
+  padding-top: 200px;
+  background-image: url(/public/Assets/backgroundBeach.png);
 }
 
 
@@ -89,14 +99,15 @@ body {
 }
 
 .titulo {
-  color: var(--branco);
-  font-size: 40px;
+  color: black;
+  font-size: 70px;
+  font-weight: bolder;
   margin: 0 0 10px 0;
 }
 
 .subtitulo {
-  color: var(--amarelo);
-  font-size: 15px;
+  font-size: 25px;
+  font-weight: normal;
   margin: 0;
 }
 
