@@ -5,10 +5,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Crystal Mind</title>
+    <link rel="icon" href="./Assets/crystalMindLogo.png" />
+
     <link rel="stylesheet" href="./css/index.css" />
 </head>
 
 <body>
+    <!-- MENU -->
     <div class="header">
         <div class="logo-position">
             <div>
@@ -27,12 +30,13 @@
                     <li><a href="#">Criador</a></li>
                     <li><a href=>|</a></li>
                     <li><a href="Login.html">Login</a></li>
-                    <li><a href="Login.html">Cadastro</a></li>
+                    <li><a href="Cadastro.html">Cadastro</a></li>
             </div>
             </ul>
         </div>
     </div>
 
+    <!-- BANNER IMAGEM INICIAL -->
     <div class="conteudoinicial">
         <div class="titulo">
             <p>Crystal Mind</p>
@@ -40,7 +44,7 @@
 
         <div class="subtitulo">
             <p>Know your Gem</p>
-            <button>Descubra sua Gem</button>
+            <button onclick="document.location='#h1_descubraSuaGem'">Descubra sua Gem</button>
             <img class="img-backgroundBeach" src="./Assets/backgroundBeachGradient.png" alt="">
         </div>
     </div>
@@ -75,7 +79,7 @@
         </div>
 
         <div class="conteudo-steven-universe">
-            <h1>Descubra sua Gem</h1>
+            <h1 id="h1_descubraSuaGem">Descubra sua Gem</h1>
             <br><br>
             <p>
                 Existe uma variedade enorme de Gems em Steven Universo, cada uma com seu próprio estilo e personalidade.
@@ -185,4 +189,5 @@
     </footer>
 
 </body>
+
 </html>

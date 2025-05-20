@@ -1,267 +1,362 @@
-@import url(https://fonts.googleapis.com/css?family=Poppins);
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 
 body {
-    font-family: 'Poppins', serif;
-    display: flex;
-
-    align-items: center;
-    height: 100vh;
-    margin: 0;
-    padding: 0;
-    color: #fff;
+  margin: 0;
+  padding: 0;
+  font-family: 'Barlow', 'Segoe UI', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: black;
 }
 
 :root {
-    --offWhite: #dbf4ad;
-    --amarelo: #fff45c;
-    --vermelho: #821313;
-    --cinzaEscuro: #080808;
-    --preto: #0000;
-    --azulEscuro: #2d334a;
+  --tamanho-header: 80px;
+  --tamanho-banner: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-simulador: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-login: calc(100vh - var(--tamanho-header) - var(--tamanho-footer) - 2px);
+  --tamanho-footer: 65px;
 }
 
-#banner {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-image: url(Imagens/WallpaperCadastro.jpg);
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    height: 100vh;
-    width: 100%;
+.container {
+  display: flex;
+  width: 80%;
+  margin: auto;
 }
 
-#banner::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background-color: rgba(0, 0, 0, 0.7);
-    z-index: 1;
+.header {
+  height: var(--tamanho-header);
+  border-bottom: 2px solid #32b9cd;
 }
 
-
-
-/* Div de informações flutuantes */
-#card_info {
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    background-color: var(--amarelo);
-    width: 550px;
-    height: 350px;
-    z-index: 2;
-    box-shadow: rgba(0, 0, 0, 0.56) 0px 22px 70px 4px;
-    border-radius: 20px;
-    border: 4px solid #000;
+.header .container {
+  justify-content: space-between;
+  align-items: center;
+  height: 100%;
 }
 
-#card_info p,
-#card_info span {
-    color: #000;
-    padding-left: 40px;
-    padding-right: 40px;
-    padding-top: 0;
-    font-size: 17px;
-    font-weight: bold;
+.header a {
+  text-decoration: none;
+  color: #e3b062;
 }
 
-#card_info h2 {
-    color: #000;
-    margin-bottom: 10px;
+.agora {
+  font-weight: 800;
 }
 
-.botao_irLogin a {
-    color: var(--amarelo);
-    background-color: #000;
-    padding: 5px;
-    border-radius: 15px;
-    font-weight: bold;
+.navbar {
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  list-style: none;
+  color: #e3b062;
 }
 
-.botao_irLogin {
-    margin: 20px;
-    font-size: 14px;
-    color: #000;
+.titulo {
+  color: #32b9cd;
+  width: fit-content;
+  font-weight: 500;
 }
 
-.botao_irLogin a {
-    color: var(--amarelo);
-    font-weight: bold;
-    text-decoration: none;
+.header h1 {
+  margin: 0;
 }
 
-.botao_irLogin a:hover {
-    color: #fff;
+/* BANNER */
+
+.banner {
+  height: var(--tamanho-banner);
+  color: white;
+  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-size: cover;
 }
 
-
-
-
-/* Div pai de todos os conteúdos */
-.div_containerCadastro {
-    padding: 20px;
-    height: 100vh;
-    box-sizing: border-box;
-    background-color: var(--cinzaEscuro);
-    border-left: 1px solid var(--amarelo);
+.banner .container {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
 }
 
-.div_boxCadastro {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    background-color: var(--cinzaEscuro);
-    padding: 30px;
-    border-radius: 10px;
-    width: 700px;
-    text-align: center;
+.banner .container p {
+  width: 50%;
+  margin: 0;
+  padding: 0;
+  font-size: 36px;
 }
 
-/* Título da Página */
-h2 {
-    margin-bottom: 30px;
-    color: #fff;
+.banner .container span {
+  font-weight: 800;
 }
 
+/* MISSÃO VISÃO VALORES */
 
+.social {
+  background-color: #e5e5e5;
+  display: flex;
+}
 
+.social .container {
+  justify-content: center;
+}
 
+.box img {
+  width: 170px;
+}
 
-/* Input's */
+.social .container .boxes {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  padding: 30px 0;
+}
+
+.social p {
+  text-align: center;
+}
+
+.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* FOOTER */
+
+.footer {
+  background-color: #32b9cd;
+  height: 150px;
+  color: #fff;
+  display: flex;
+  font-size: 15px;
+}
+
+.footer .container {
+  justify-content: center;
+  text-align: center;
+}
+
+.footer .container .version {
+  font-size: 12px;
+}
+
+/* LOGIN */
+
+.login {
+  height: var(--tamanho-login);
+  background-image: url('../assets/imgs/bg-jelly-fish-para-home.png');
+  background-size: cover;
+}
+
+.login .container {
+  justify-content: center;
+  align-items: center;
+  height: 100%;
+}
+
+.card {
+  width: 50%;
+  background-color: #e5e5e5;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  color: palevioletred;
+  flex-direction: column;
+  height: fit-content;
+  padding: 20px 0;
+}
+
+.card h2 {
+  margin: 0;
+  font-size: 30px;
+}
+
+.formulario {
+  display: flex;
+  height: 90%;
+  width: 80%;
+  justify-content: space-around;
+  flex-direction: column;
+}
+
+.formulario span {
+  font-size: 15px;
+  font-weight: 800;
+}
+
+.formulario input {
+  border: 2px solid #32b9cd;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.formulario select {
+  border: 2px solid #32b9cd;
+  background-color: white;
+  color: gray;
+  height: 36px;
+  text-align: center;
+  border-radius: 10px;
+  margin: 0;
+}
+
+.campo {
+  display: flex;
+  flex-direction: column;
+  justify-content: start;
+  padding: 5px 0;
+}
+
+.botao {
+  cursor: pointer;
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  color: #fff;
+  background-color: #ED145B;
+  width: 120px;
+  height: 30px;
+  align-self: center;
+  margin-top: 20px;
+}
+
+.loading-div {
+  width: 50px;
+  display: none;
+}
+
+.loading-div img {
+  height: 50px;
+  width: 50px;
+}
+
+#div_erros_login {
+  display: none
+}
+
+/* FORMULARIO */
+
+.alerta_erro{
+  display: flex;
+  justify-content: flex-end;
+}
+
+.card_erro {
+  display: none;
+  background-color: #fff;
+  color: black;
+  width: 230px;
+  position: fixed;
+  border-radius: 4px;
+  border: #ED145B 3px solid;
+  padding: 10px;
+  margin-right: 10%;
+}
+
+.card_erro #mensagem_erro{
+  font-weight: 500;
+  font-size: 20px;
+}
+
+.formulario .tipo_campo {
+  font-size: 20px;
+  font-weight: 600 !important;
+}
+
+.formulario {
+  display: flex;
+  flex-direction: column;
+}
+
 input {
-    position: absolute;
-    width: 300px;
-    font-size: 17px;
-    outline: none;
-    padding: 0 30px;
-    line-height: 80px;
-    border-radius: 50px;
-    border: 2px solid #888;
-    background: transparent;
-    transition: 0.1s ease;
-    z-index: 1111;
+  margin-bottom: 10px;
+  border: 2px solid #32b9cd;
+  padding: 10px;
+  text-align: center;
+  border-radius: 10px;
 }
 
-.div_campoCadastro {
-    position: relative;
-    display: flex;
-    justify-content: center;
-    height: 50px;
-    margin-bottom: 50px;
+.btn {
+  font-family: "Barlow", sans-serif;
+  border: 0;
+  border-radius: 5px;
+  font-weight: 600;
+  font-size: 18px;
+  padding: 10px 15px;
+  color: white;
+  background-color: #ED145B;
+  width: 120px;
+  align-self: center;
+  margin-top: 5px;
 }
 
-.textoInput {
-    position: absolute;
-    left: 15px;
-    white-space: nowrap;
-    font-size: 17px;
-    font-weight: bold;
-    color: #888;
-    line-height: 80px;
-    background-color: var(--cinzaEscuro);
-    border-radius: 20px;
-    transition: 0.2s ease;
+.loading-div {
+  width: 50px;
+  margin: auto;
+  display: none;
 }
 
-/* Espaçamento do campo de senha e das informações necessárias para inserir uma senha válida */
-#div_campoSenha {
-    margin-bottom: 40px;
+.loading-div img {
+  height: 50px;
+  width: 50px;
 }
 
-/* Validação de Senha */
-#div_validarSenha {
-    width: 350px;
-    color: #888;
-    font-size: 12px;
-    margin-bottom: 20px;
+/* SIMULADOR */
+
+.simulador {
+  color: white;
 }
 
-/* Ao clicar, as bordas dos input's ficarão amarelas */
-input:focus,
-input:valid {
-    color: var(--amarelo);
-    border: 2px solid var(--amarelo);
+.simulador .container {
+  flex-direction: column;
+  overflow: scroll; 
+  height: var(--tamanho-simulador);
 }
 
-/* Ao inserir um texto valido, a borda permanece amarela */
-input:focus+.textoInput,
-input:valid+.textoInput {
-    color: var(--amarelo);
-    height: 30px;
-    line-height: 30px;
-    padding: 0 12px;
-    transform: translate(0, -16px) scale(0.88);
-    z-index: 1111;
+/* ALERTA */
+
+#alerta {
+  position: absolute;
+  right: 0;
+  bottom: 0;
 }
 
-/* Para remover as setas do input do tipo número */
-input::-webkit-outer-spin-button,
-input::-webkit-inner-spin-button {
-    -webkit-appearance: none;
-    margin: 0;
+.mensagem-alarme {
+  background-color: white;
+  border-radius: 5px;
+  width: 300px;
+  height: 80px;
+  margin: 10px;
+  padding: 10px 0;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
 }
 
-/* Espaçamento do icone pro texto da input */
-i {
-    padding-right: 10px;
+.mensagem-alarme h3 {
+  font-size: 14px;
+  margin: 0;
 }
 
-/* Botão para relevar senha */
-#i_buttonEyeConfSenha,
-#i_buttonEyeSenha {
-    background-color: transparent;
-    color: #888;
-    position: absolute;
-    left: 365px;
-    font-size: 20px;
-    border: transparent;
-    line-height: 80px;
+.mensagem-alarme .informacao {
+  width: 66%;
 }
 
-
-
-/* Botão de "Cadastrar" */
-#botao_login {
-    width: 250px;
-    height: 80px;
-    padding: 15px;
-    border: none;
-    border-radius: 30px;
-    background: var(--amarelo);
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s ease;
-    color: #000;
-    font-size: 17px;
-    transition: 0.1s ease;
-    border: 0px;
+.alarme-sino {
+  width: 48px;
+  height: 48px;
+  animation-name: bell;
+  animation-duration: 4s;
+  background-image: url('https://cdn-icons-png.flaticon.com/512/1157/1157000.png');
+  background-size: cover;
+  animation-iteration-count: infinite;
 }
 
-#botao_login:hover {
-    transition: 0.1s ease;
-    border: solid 3px #000;
-    animation: pulse 1.5s infinite;
-}
-
-/* Animação que faz com que o botão de cadastrar fique pulsando, para chamar atenção */
-@keyframes pulse {
-    0% {
-        box-shadow: 0 0 0 0 rgba(126, 126, 126, 0.7);
-    }
-
-    70% {
-        box-shadow: 0 0 0 15px rgba(34, 197, 94, 0);
-    }
-
-    100% {
-        box-shadow: 0 0 0 0 rgba(34, 197, 94, 0);
-    }
+@keyframes bell {
+  0%   {transform: rotate(25deg)}
+  25%  {transform: rotate(-25deg)}
+  50%  {transform: rotate(25deg)}
+  75%  {transform: rotate(-25deg)}
+  100% {transform: rotate(25deg)}
 }
