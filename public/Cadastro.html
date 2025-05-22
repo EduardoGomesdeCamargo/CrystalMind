@@ -6,7 +6,7 @@
   <meta http-equiv="X-UA-Compatible" content="IE=edge" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-  <title>AquaTech | Cadastro</title>
+  <title>Crystal Mind | Cadastro</title>
 
   <script src="./js/sessao.js"></script>
 
@@ -16,30 +16,35 @@
 </head>
 
 <body onload="listar()">
-  <!--header inicio-->
+  <!-- MENU -->
   <div class="header">
-    <div class="container">
-      <h1 class="titulo">AquaTech</h1>
-      <ul class="navbar">
-        <li>
-          <a href="index.html">Inicial</a>
-        </li>
-        <li>
-          <a href="simulador.html">Simulador</a>
-        </li>
-        <li>|</li>
-        <li>
-          <a href="login.html">Login</a>
-        </li>
-        <li class="agora">
-          <a href="#">Cadastro</a>
-        </li>
+    <div class="logo-position">
+      <div>
+        <a href="index.html" class="logo">
+          <img src="Assets/crystalMindLogotipo.png" alt="Logo" />
+        </a>
+      </div>
+    </div>
+
+    <div class="lista">
+      <div>
+        <ul class="nav-list">
+          <li><a href="index.html">Início</a></li>
+
+          <li><a href="#h1_crystalQuiz">Teste de Personalidade</a></li>
+          <li><a href="#">Criador</a></li>
+          <span>|</span>
+          <li><a href="Login.html">Login</a></li>
+          <li><a class="pagina-atual" href="Cadastro.html">Cadastro</a></li>
+      </div>
       </ul>
     </div>
   </div>
   <!--header fim-->
 
   <div class="login">
+    <img class="img-backgroundBeach" src="./Assets/backgroundBeach.png" alt="">
+
     <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
@@ -47,35 +52,38 @@
     </div>
     <div class="container">
       <div class="card card-cadastro">
-        <h2>Bem-vindo!</h2>
+        <h2>Cadastre-se</h2>
         <div class="formulario">
           <!--
                          Para inserir mais um campo, copie uma das inputs abaixo.
                          Assim que inserir vá para o script abaixo.
                      -->
-          <div class="campo">
+          <!-- <div class="campo">
             <span>Código de ativação:</span>
             <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div>
+          </div> -->
+
           <div class="campo">
-            <span>Nome:</span>
-            <input id="nome_input" type="text" placeholder="Seu nome" />
+            <span>Primeiro Nome:</span>
+            <input id="nome_input" type="text" placeholder="Seu primeiro nome" />
           </div>
+
           <div class="campo">
-            <span>E-mail:</span>
-            <input id="email_input" type="text" placeholder="meuemail@provedor.com" />
+            <span>Sobrenome:</span>
+            <input id="sobrenome_input" type="text" placeholder="Seu sobrenome" />
           </div>
-          <!-- Campo CPF -->
+
           <div class="campo">
-            <span>CPF:</span>
-            <input oninput="bloquearTamanhoCPF()" id="cpf_input" type="number" placeholder="000.000.000/00" />
+            <span>Endereço de E-mail:</span>
+            <input id="email_input" type="text" placeholder="seuemail@dominio.com" />
           </div>
+
           <div class="campo">
             <span>Senha:</span>
             <input id="senha_input" type="password" placeholder="******" />
           </div>
           <div class="campo">
-            <span>Confirmação da Senha:</span>
+            <span>Confirmar Senha:</span>
             <input id="confirmacao_senha_input" type="password" placeholder="******" />
           </div>
           <button class="botao" onclick="cadastrar()">Cadastrar</button>
@@ -90,25 +98,32 @@
   </div>
 
   <!--footer inicio-->
-  <div class="footer">
-    <div class="container">
-      <h4>Feito com amor por aluno &hearts; SPTech &copy; 2023</h4>
-      <span class="version">v1.0.0</span>
+  <footer class="footer">
+    <div class="footer-left">
+      <img src="Assets/crystalMindLogotipo.png" class="logo" />
     </div>
-  </div>
+
+    <div>
+      <p class="footer-credit">© 2025 Crystal Mind</p>
+    </div>
+
+    <div class="footer-sobre">
+      <a href="#">Criador</a>
+    </div>
+  </footer>
   <!--footer fim-->
 </body>
 
 </html>
 
 <script>
-   // Veririficando se o CPF tem mais do que 11 caracteres
-   function bloquearTamanhoCPF() {
-      var cpfAtual = cpf_input.value;
-      if (cpfAtual.length > 11) {
-        cpf_input.value = cpfAtual.replace(cpfAtual[cpfAtual.length - 1], '');
-      }
+  // Veririficando se o CPF tem mais do que 11 caracteres
+  function bloquearTamanhoCPF() {
+    var cpfAtual = cpf_input.value;
+    if (cpfAtual.length > 11) {
+      cpf_input.value = cpfAtual.replace(cpfAtual[cpfAtual.length - 1], '');
     }
+  }
   // Array para armazenar empresas cadastradas para validação de código de ativação 
   let listaEmpresasCadastradas = [];
 
@@ -180,7 +195,7 @@
     } else {
       setInterval(sumirMensagem, 5000);
     }
- 
+
     // Verificando se há algum campo em branco
     if (
       nomeVar == "" ||

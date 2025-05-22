@@ -17,7 +17,8 @@ body {
   font-family: "Poppins";
   overflow-x: hidden;
 }
-html{
+
+html {
   scroll-behavior: smooth;
 }
 
@@ -28,6 +29,7 @@ html{
   left: 0;
   width: 100%;
   background-color: rgb(255, 255, 255);
+  border-bottom: 2px solid var(--rosa);
   z-index: 1000;
   display: flex;
   justify-content: space-between;
@@ -66,6 +68,11 @@ html{
   margin: 0;
 }
 
+.nav-list span {
+  font-size: 20px;
+  color: var(--rosa);
+}
+
 .nav-list li a {
   padding: 10px 15px;
   border: none;
@@ -84,12 +91,14 @@ html{
 
 .pagina-atual {
   text-decoration: underline;
-  font-weight: bolder;
+  font-weight: 900;
   color: var(--rosa);
 }
 
 /* -------------------------------INDEX PRIMEIRA PARTE----------------------------------- */
 .conteudoinicial {
+  display: flex;
+  flex-direction: column;
   padding: 100px;
   padding-top: 200px;
 }
@@ -108,7 +117,7 @@ html{
 
 .conteudoinicial button:hover {
   color: white;
-  background-color:var(--rosa);
+  background-color: var(--rosa);
 }
 
 .img-backgroundBeach {
@@ -128,15 +137,22 @@ html{
 
 .titulo {
   color: rgb(255, 255, 255);
-  font-size: 70px;
+  font-size: 100px;
   font-weight: bolder;
 }
 
-.subtitulo {
+.titulo p {
+  margin: 0;
+}
 
+.subtitulo {
   color: rgb(255, 255, 255);
-  font-size: 25px;
+  font-size: 40px;
   font-weight: normal;
+}
+
+.subtitulo p {
+  margin: 0;
 }
 
 /* .galinha {
@@ -165,7 +181,7 @@ html{
 /* -------------------------------INDEX SEGUNDA PARTE STEVEN UNIVERSO----------------------------------- */
 .steven-universe {
   padding: 100px;
-  margin-top: 80px;
+  margin-top: 120px;
   display: flex;
   justify-content: space-around;
   flex-wrap: wrap;
@@ -181,6 +197,7 @@ html{
   font-size: 18px;
   text-align: justify;
 }
+
 .conteudo-steven-universe h1 {
   font-size: 40px;
   color: #2b2b2b;
@@ -191,6 +208,7 @@ html{
   font-weight: bolder;
   color: var(--rosa);
 }
+
 .conteudo-steven-universe a:hover {
   color: rgb(252, 158, 181);
 }
@@ -208,6 +226,7 @@ html{
   justify-content: space-around;
   flex-wrap: wrap;
 }
+
 .img-gemsTogether {
   height: 400px;
   width: 400px;
@@ -243,107 +262,63 @@ html{
   color: var(--rosa);
   width: 20%;
   border-radius: 20px;
+  border: 1px solid var(--rosa);
   padding: 20px;
   margin: 50px;
   background-color: white;
 }
+
 .card img {
   height: 150px;
   color: var(--rosa);
 }
 
-/* .card:hover {
-  transform: translateY(-10px);
-  box-shadow: 0px 15px 25px rgba(0, 0, 0, 0.3);
+/* -------------------FORMULÁRIO----------------------- */
+.perguntas {
+  display: flex;
+  flex-direction: column;
+  text-align: center;
 }
 
-.card h4 {
-  margin-bottom: 10px;
-  font-size: 18px;
+.perguntas form {
+  display: flex;
+  justify-content: space-evenly;
+}
+
+.opcao-concordo {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(51, 203, 1);
+}
+
+.opcao-concordo input {
+  color: #fa5d92;
+}
+
+.opcao-neutro {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+}
+
+.span-neutro {
+  font-size: 20px;
+  color: rgb(111, 111, 111);
   font-weight: bold;
 }
 
-.card p {
-  font-size: 13px;
-  line-height: 1.4;
-} */
-
-.entenda-funcionamento {
-  background-color: var(--preto);
+.opcao-discordo {
+  font-size: 20px;
+  font-weight: bold;
+  color: rgb(255, 0, 0);
 }
 
-.conteudo-entenda {
-  background-color: var(--preto);
+.opcao-discordo input {
+  background-color: #fa5d92;
+  border-color: #fa5d92;
 }
 
-.entenda {
-  display: flex;
-  justify-content: start;
-  width: 100%;
-  background-color: var(--preto);
-  padding: 20px 20px;
-  text-align: left;
-}
-
-.entenda h2 {
-  color: var(--branco);
-  margin-bottom: 20px;
-  margin-left: 30px;
-}
-
-.entenda h4 {
-  color: var(--branco);
-  margin-left: 30px;
-
-}
-
-.entenda p {
-  color: var(--amarelo);
-  font-size: 15px;
-  max-width: 600px;
-  margin-left: 30px;
-}
-
-.section-content {
-  background-image: url("Imagens/background.png"), linear-gradient(to top left, #000 35%, #141414 100%);
-  background-size: cover;
-  background-repeat: no-repeat;
-  margin-left: 50px;
-  padding: 40px 20px;
-  background-position: right -30px bottom;
-}
-
-
-.step {
-  margin-bottom: 60px;
-}
-
-.step h2::before {
-  content: none;
-}
-
-.seta {
-  width: 50px;
-  height: 50px;
-  margin-right: 10px;
-}
-
-.step h2 {
-  color: var(--branco);
-  margin-bottom: 10px;
-  display: flex;
-  align-items: left;
-}
-
-.step p {
-  font-size: 15px;
-  color: var(--branco);
-  max-width: 700px;
-}
-
-.zero-margin {
-  margin: 0;
-}
 
 /* ------------------------RODAPÉ-------------------- */
 .footer {
@@ -351,22 +326,25 @@ html{
   display: flex;
   justify-content: space-between;
   padding: 20px 100px;
-  border-top: 1px solid var(--rosa);
+  border-top: 2px solid var(--rosa);
 }
+
 .footer-sobre {
   display: flex;
   align-items: center;
 }
+
 .footer-sobre a {
   color: var(--rosa);
   font-weight: bolder;
 }
 
 .footer-credit {
+  justify-content: flex-start;
   font-size: 15px;
-  margin-left: 30px;
   color: black;
 }
-.footer-left{
+
+.footer-left {
   display: flex;
 }
