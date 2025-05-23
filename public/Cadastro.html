@@ -15,7 +15,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" />
 </head>
 
-<body onload="listar()">
+<body>
   <!-- MENU -->
   <div class="header">
     <div class="logo-position">
@@ -116,117 +116,128 @@
 
 </html>
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 <script>
-  // Veririficando se o CPF tem mais do que 11 caracteres
-  function bloquearTamanhoCPF() {
-    var cpfAtual = cpf_input.value;
-    if (cpfAtual.length > 11) {
-      cpf_input.value = cpfAtual.replace(cpfAtual[cpfAtual.length - 1], '');
-    }
-  }
+
   // Array para armazenar empresas cadastradas para validação de código de ativação 
-  let listaEmpresasCadastradas = [];
+  // let listaEmpresasCadastradas = [];
 
   function cadastrar() {
     // aguardar();
 
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var nomeVar = nome_input.value;
+    var primeiro_nomeVar = nome_input.value;
     var emailVar = email_input.value;
-    var cpfVar = cpf_input.value; // variável cpf
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var codigoVar = codigo_input.value;
-    var idEmpresaVincular
-
-
-    // Verificando se o nome tem menos do que 2 caracteres
-    if (nomeVar.length < 2) {
-      cardErro.style.display = "block"
-      mensagem_erro.innerHTML = "(O seu nome deve possuir pelo menos 2 (dois) caracteres)";
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificando se o email não possui @ e .
-    if ((emailVar.includes("@") && emailVar.includes(".")) == false) {
-      cardErro.style.display = "block"
-      mensagem_erro.innerHTML = "(O seu email deve possuir um @ e um .)"
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificando se a senha tem menos do que 7 caracteres
-    if (senhaVar.length < 7) {
-      cardErro.style.display = "block"
-      mensagem_erro.innerHTML = "(A sua senha deve ter pelo menos 7 caracteres)"
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificando se a senha de confirmação é igual a senha
-    if (senhaVar != confirmacaoSenhaVar) {
-      cardErro.style.display = "block"
-      mensagem_erro.innerHTML = "(A senha de confirmação e a sua senha devem ser iguais)"
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
-
-    // Verificando se o CPF não tem 11 caracteres
-    if (cpfVar.length != 11) {
-      cardErro.style.display = "block"
-      mensagem_erro.innerHTML = "(Seu CPF deve ter 11 caracteres)"
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
-    }
+    var sobrenomeVar = sobrenome_input.value;
 
     // Verificando se há algum campo em branco
-    if (
-      nomeVar == "" ||
+    if (primeiro_nomeVar == "" ||
       emailVar == "" ||
-      cpfVar == "" ||
       senhaVar == "" ||
       confirmacaoSenhaVar == "" ||
-      codigoVar == ""
-    ) {
+      sobrenomeVar == ""){
+
+        cardErro.style.display = "block";
+        mensagem_erro.innerHTML =
+          "(Mensagem de erro para todos os campos em branco)";
+
+        finalizarAguardar();
+        return false;
+    } else {
+        setInterval(sumirMensagem, 5000);
+    }
+
+    
+    // Verificando se o nome é maior que 1 char
+    if (primeiro_nomeVar.length == 1) {
       cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
+      mensagem_erro.innerHTML = "(Mensagem de erro para o nome incorreto)";
 
       finalizarAguardar();
       return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
     }
 
-    // Verificando se o código de ativação é de alguma empresa cadastrada
-    for (let i = 0; i < listaEmpresasCadastradas.length; i++) {
-      if (listaEmpresasCadastradas[i].codigo_ativacao == codigoVar) {
-        idEmpresaVincular = listaEmpresasCadastradas[i].id
-        console.log("Código de ativação válido.");
-        break;
-      } else {
-        cardErro.style.display = "block";
-        mensagem_erro.innerHTML = "(Mensagem de erro para código inválido)";
-        finalizarAguardar();
+  
+
+
+    // Verificando se o email contem "@" 
+    var contArroba = 0;
+    var contPonto = 0
+    for (let i = 0; i < emailVar.length; i++) {
+      if (emailVar[i] == "@") {
+        contArroba += 1;
+      }
+      if (emailVar[i] == ".") { //Validação para ver se tem "."
+        contPonto += 1;
       }
     }
+
+    if (contArroba > 1 ) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Mensagem de erro para o uso excessivo do @)";
+
+      finalizarAguardar();
+      return false;
+    } else if (contArroba == 0){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Mensagem de erro para a falta de uso do @)";
+
+      finalizarAguardar();
+      return false;
+    }
+
+    // Verificando se o email contem "."
+
+
+    if (contPonto == 0){
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Mensagem de erro para a falta de uso do '.')";
+
+      finalizarAguardar();
+      return false;
+    }
+
+    // Verificando se a senha tem no min 7 digitos
+    if (senhaVar.length < 7) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Mensagem de erro para o tamanho da senha)";
+
+      finalizarAguardar();
+      return false;
+    }
+
+    // Verificando se a senha tem no min 7 digitos
+    if (senhaVar != confirmacaoSenhaVar) {
+      cardErro.style.display = "block";
+      mensagem_erro.innerHTML = "(Mensagem de erro para a divergencia das senhas)";
+
+      finalizarAguardar();
+      return false;
+    }
+
 
     // Enviando o valor da nova input
     fetch("/usuarios/cadastrar", {
@@ -237,11 +248,10 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
-        nomeServer: nomeVar,
-        cpfServer: cpfVar,
+        primeiro_nomeServer: primeiro_nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        idEmpresaVincularServer: idEmpresaVincular
+        sobrenomeServer: sobrenomeVar
       }),
     })
       .then(function (resposta) {
@@ -271,25 +281,7 @@
     return false;
   }
 
-  // Listando empresas cadastradas 
-  function listar() {
-    fetch("/empresas/listar", {
-      method: "GET",
-    })
-      .then(function (resposta) {
-        resposta.json().then((empresas) => {
-          empresas.forEach((empresa) => {
-            listaEmpresasCadastradas.push(empresa);
-
-            console.log("listaEmpresasCadastradas")
-            console.log(listaEmpresasCadastradas[0].codigo_ativacao)
-          });
-        });
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-      });
-  }
+ 
 
   function sumirMensagem() {
     cardErro.style.display = "none";

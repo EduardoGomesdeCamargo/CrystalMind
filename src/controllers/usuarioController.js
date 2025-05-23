@@ -1,4 +1,4 @@
-var usuarioModel = require("../models/usuarioModel"); // requisição
+var usuarioModel = require("../models/usuarioModel");
 var aquarioModel = require("../models/aquarioModel");
 
 function autenticar(req, res) {
@@ -11,9 +11,8 @@ function autenticar(req, res) {
         res.status(400).send("Sua senha está indefinida!");
     } else {
 
-        usuarioModel.autenticar(email, senha) // aqui, é chamada a função autenticar no arquivo usuarioModel.js da pasta models.
+        usuarioModel.autenticar(email, senha)
             .then(
-                // depois de fazer o select e os dados voltarem para cá, é acionada a sequinte função
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
                     console.log(`Resultados: ${JSON.stringify(resultadoAutenticar)}`); // transforma JSON em String
@@ -21,22 +20,22 @@ function autenticar(req, res) {
                     if (resultadoAutenticar.length == 1) {
                         console.log(resultadoAutenticar);
 
-                        // os sequintes dados não passam pelo arquivo usuarios.js em routes; eles vão para o login.html diretamente
                         // aquarioModel.buscarAquariosPorEmpresa(resultadoAutenticar[0].empresaId)
                         //     .then((resultadoAquarios) => {
                         //         if (resultadoAquarios.length > 0) {
                                     res.json({
                                         id: resultadoAutenticar[0].id,
-                                        email: resultadoAutenticar[0].email_comercial,
-                                        razãoSocial: resultadoAutenticar[0].razao_social,
+                                        email: resultadoAutenticar[0].email,
+                                        primeiro_nome: resultadoAutenticar[0].primeiro_nome,
                                         senha: resultadoAutenticar[0].senha,
-                                        telefone: resultadoAutenticar[0].telefone_comercial,
-                                        cpf: resultadoAutenticar[0].cnpj
+                                        sobrenome: resultadoAutenticar[0].sobrenome,
                                     });
-                            //     } else {
-                            //         res.status(204).json({ aquarios: [] });
-                            //     }
-                            // })
+                                // } 
+                        //         else {
+                        //             res.status(204).json({ aquarios: [] });
+                        //         }
+                        //     }
+                        // )
                     } else if (resultadoAutenticar.length == 0) {
                         res.status(403).send("Email e/ou senha inválido(s)");
                     } else {
@@ -56,27 +55,24 @@ function autenticar(req, res) {
 
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
-    var cnpj = req.body.cnpjServer;
-    var razaoSocial = req.body.razaoSocialServer;
-    var telefone = req.body.telefoneServer;
+    var primeiro_nome = req.body.primeiro_nomeServer;
     var email = req.body.emailServer;
     var senha = req.body.senhaServer;
+    var sobrenome = req.body.sobrenomeServer;
 
     // Faça as validações dos valores
-    if (senha == undefined) {
-        res.status(400).send("Sua senha está undefined!");
+    if (primeiro_nome == undefined) {
+        res.status(400).send("Seu primeiro nome está undefined!");
     } else if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
-    } else if (cnpj == undefined) { // validação cnpj
-        res.status(400).send("Seu CNPJ está undefined!");
-    } else if (razaoSocial == undefined) {
-        res.status(400).send("Sua razão social está undefined!");
-    } else if (telefone == undefined) {
-        res.status(400).send("Seu telefone está undefined!");
+    } else if (senha == undefined) {
+        res.status(400).send("Sua senha está undefined!");
+    } else if (sobrenome == undefined) {
+        res.status(400).send("Sua empresa a vincular está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(razaoSocial, email, senha, telefone, cnpj)
+        usuarioModel.cadastrar(primeiro_nome,sobrenome,email,senha)
             .then(
                 function (resultado) {
                     res.json(resultado);
