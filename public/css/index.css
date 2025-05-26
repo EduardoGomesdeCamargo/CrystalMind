@@ -277,6 +277,7 @@ html {
   display: flex;
   flex-direction: column;
   text-align: center;
+  align-items: center;
   background-color: #efefef;
   border-top-left-radius: 40px;
   border-top-right-radius: 40px;
@@ -286,6 +287,11 @@ html {
 .perguntas form {
   display: flex;
   justify-content: center;
+}
+.perguntas button{
+  width: 20%;
+  height: 40px;
+  border-radius: 20px;
 }
 
 .perguntas p {
