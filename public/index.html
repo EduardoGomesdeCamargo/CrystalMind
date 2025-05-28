@@ -136,7 +136,9 @@
     <!-- <div class="barra-progresso">
 
      </div> -->
-    <div class="perguntas">
+
+     <!-- EXTROVERSAO (E) X INTROVERSAO (I) -->
+    <div class="perguntas" id="id_perguntas">
         <!-- 1 -->
         <p>Quando você tem um tempo livre, geralmente prefere sair com outras pessoas do que ficar sozinho.</p>
 
@@ -199,14 +201,14 @@
             </div>
         </form>
         <hr>
-        
+
         <!-- 4 -->
         <p> 4. Quando algo te anima ou frustra, você tende a expressar isso facilmente para os outros.</p>
 
         <form>
             <div class="opcao-concordo">
                 <span>Concordo</span>
-                <input type="radio" name="size" id="input_extrovertido3"/>
+                <input type="radio" name="size" id="input_extrovertido3" />
             </div>
 
             <div class="opcao-neutro">
@@ -227,7 +229,7 @@
         <form>
             <div class="opcao-concordo">
                 <span>Concordo</span>
-                <input type="radio" name="size" id="input_extrovertido4"/>
+                <input type="radio" name="size" id="input_extrovertido4">
             </div>
 
             <div class="opcao-neutro">
@@ -244,6 +246,7 @@
         <button onclick="avancarTeste()">Avançar</button>
     </div>
 
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-left">
             <img src="Assets/crystalMindLogotipo.png" class="logo" />
@@ -262,6 +265,341 @@
 
 </html>
 <script>
+    var listaPerguntas = [`
+         <!-- SENSAÇAO (E) X INTUICAO (N) -->
+    <div class="perguntas" id="id_perguntas">
+        <!-- 6 -->
+        <p>Ao seguir instruções, você prefere um passo a passo claro do que improvisar com base na ideia geral</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido0" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 7 -->
+        <p>Quando alguém conta uma história, você presta mais atenção nos detalhes do que no significado por trás dela.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido1" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 8 -->
+        <p>Você costuma confiar mais no que pode ver e tocar do que em hipóteses ou palpites.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido2" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 9 -->
+        <p>Diante de uma nova ideia, você busca primeiro exemplos concretos antes de imaginar possibilidades.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido3" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 10 -->
+        <p>Em projetos, você foca mais em resolver o que está diante de você do que em pensar nos impactos futuros.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido4">
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_neutroExtroversao" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+
+        <button onclick="avancarTeste()">Avançar</button>
+    </div>`,
+
+
+    
+    `<!-- SENSAÇAO (E) X INTUICAO (N) -->
+    <div class="perguntas" id="id_perguntas">
+        <!-- 11 -->
+        <p>Em discussões, você dá mais peso a argumentos racionais do que à forma como as pessoas se sentem.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido0" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 12 -->
+        <p>Você costuma ser mais influenciado por aquilo que toca suas emoções do que por argumentos baseados em fatos.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido1" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 13 -->
+        <p>Quando um amigo te pede um conselho difícil, você pensa primeiro no que é lógico antes de pensar no que ele gostaria de ouvir.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido2" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 14 -->
+        <p>Você acredita que tomar decisões justas é mais importante do que evitar conflitos.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido3" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 15 -->
+        <p>Você costuma evitar magoar os outros, mesmo que precise abrir mão da sua opinião.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido4">
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_neutroExtroversao" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+
+        <button onclick="avancarTeste()">Avançar</button>
+    </div>`,
+
+
+        `<!-- JULGAMENTO (J) X PERCEPCAO (P) -->
+    <div class="perguntas" id="id_perguntas">
+        <!-- 16 -->
+        <p>Você costuma se sentir mais confortável com um plano bem definido do que com decisões de última hora.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido0" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 17 -->
+        <p>Quando viaja, você prefere seguir um roteiro planejado em vez de decidir o que fazer na hora.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido1" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 18 -->
+        <p>Quando surgem imprevistos no seu dia, você se adapta com facilidade.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido2" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 19 -->
+        <p>Você normalmente mantém a calma, mesmo sob muita pressão.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido3" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 20 -->
+        <p>Você gosta de manter suas opções abertas o maior tempo possível antes de tomar uma decisão.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido4">
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_neutroExtroversao" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+
+        <button onclick="avancarTeste()">Avançar</button>
+    </div>`
+
+]
+
+
+
     var extrovertido = [];
     var introvertido = [];
 
@@ -281,5 +619,21 @@
         var extrovertido3 = input_extrovertido3.value;
         var extrovertido4 = input_extrovertido4.value;
         extrovertido.push(extrovertido0, extrovertido1, extrovertido2, extrovertido3, extrovertido4);
+
+        chamarPerguntas()
+    }
+    function chamarPerguntas() {
+        var perguntas = '';
+        for (var i = 0; i < listaPerguntas.length; i++) {
+            perguntas_atuais = listaPerguntas[i];
+
+            if (perguntas_atuais != 0) {
+                perguntas = perguntas_atuais;
+                listaPerguntas[i] = 0;
+                break;
+            }
+            
+        }
+        id_perguntas.innerHTML = perguntas;
     }
 </script>
