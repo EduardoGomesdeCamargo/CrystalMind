@@ -274,6 +274,8 @@ html {
 
 /* -------------------FORMULÁRIO----------------------- */
 .perguntas {
+  font-size: 25px;
+  font-weight: 500;
   display: flex;
   flex-direction: column;
   text-align: center;
@@ -283,6 +285,9 @@ html {
   border-top-right-radius: 40px;
   border-top: solid 1px rgb(132, 131, 131);
 }
+.perguntas hr{
+  width: 70%;
+}
 
 .perguntas form {
   display: flex;
@@ -290,8 +295,20 @@ html {
 }
 .perguntas button{
   width: 20%;
-  height: 40px;
+  height: 70px;
+  border: 1px solid var(--rosa);
   border-radius: 20px;
+  margin-bottom: 40px;
+  margin-top: 30px;
+  color: white;
+  font-weight: bold;
+  font-size: 25px;
+  background-color: var(--rosa);
+  transition: background-color 0.2s ease-in;
+}
+
+.perguntas button:hover {
+  background-color:#fca9be;
 }
 
 .perguntas p {
@@ -302,7 +319,7 @@ html {
   display: flex;
   align-items: center;
   margin: 40px;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   color: var(--verde);
 }
@@ -354,7 +371,7 @@ html {
   display: flex;
   align-items: center;
   margin: 40px;
-  font-size: 20px;
+  font-size: 30px;
   font-weight: bold;
   color: var(--vermelho);
 }

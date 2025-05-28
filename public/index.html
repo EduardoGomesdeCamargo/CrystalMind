@@ -137,25 +137,111 @@
 
      </div> -->
     <div class="perguntas">
+        <!-- 1 -->
         <p>Quando você tem um tempo livre, geralmente prefere sair com outras pessoas do que ficar sozinho.</p>
 
         <form>
             <div class="opcao-concordo">
                 <span>Concordo</span>
-                <input type="radio" name="size" id="size_2" value="E" />
+                <input type="radio" name="size" id="input_extrovertido0" value="E" />
             </div>
-            
+
             <div class="opcao-neutro">
-                <input type="radio" name="size" id="size_2" value="0" />
+                <input type="radio" name="size" id="input_" value="0" />
                 <span class="span-neutro">Neutro</span>
             </div>
-            
+
             <div class="opcao-discordo">
-                <input type="radio" name="size" id="size_2" value="I" />
+                <input type="radio" name="size" id="input_" value="I" />
                 <span>Discordo</span>
             </div>
         </form>
-        <button>Avançar</button>
+        <hr>
+
+        <!-- 2 -->
+        <p>Em festas ou eventos sociais, você costuma se sentir energizado em vez de cansado.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido1" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 3 -->
+        <p> 3. Você normalmente toma a iniciativa para puxar conversa com estranhos.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido2" value="E" />
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+        
+        <!-- 4 -->
+        <p> 4. Quando algo te anima ou frustra, você tende a expressar isso facilmente para os outros.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido3"/>
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+        <hr>
+
+        <!-- 5 -->
+        <p>Em um grupo de trabalho, você prefere colaborar ativamente em vez de focar em tarefas individuais.</p>
+
+        <form>
+            <div class="opcao-concordo">
+                <span>Concordo</span>
+                <input type="radio" name="size" id="input_extrovertido4"/>
+            </div>
+
+            <div class="opcao-neutro">
+                <input type="radio" name="size" id="input_neutroExtroversao" value="0" />
+                <span class="span-neutro">Neutro</span>
+            </div>
+
+            <div class="opcao-discordo">
+                <input type="radio" name="size" id="input_" value="I" />
+                <span>Discordo</span>
+            </div>
+        </form>
+
+        <button onclick="avancarTeste()">Avançar</button>
     </div>
 
     <footer class="footer">
@@ -173,17 +259,27 @@
     </footer>
 
 </body>
+
 </html>
 <script>
-    var extrovertido = 0;
-    var introvertido = 0;
+    var extrovertido = [];
+    var introvertido = [];
 
-    var realista = 0;
-    var intuitivo = 0;
+    var realista = [];
+    var intuitivo = [];
 
-    var analitico = 0;
-    var emocional = 0;
+    var analitico = [];
+    var emocional = [];
 
-    var planejamento = 0;
-    var improviso = 0;
+    var planejamento = [];
+    var improviso = [];
+
+    function avancarTeste() {
+        var extrovertido0 = input_extrovertido0.value;
+        var extrovertido1 = input_extrovertido1.value;
+        var extrovertido2 = input_extrovertido2.value;
+        var extrovertido3 = input_extrovertido3.value;
+        var extrovertido4 = input_extrovertido4.value;
+        extrovertido.push(extrovertido0, extrovertido1, extrovertido2, extrovertido3, extrovertido4);
+    }
 </script>
