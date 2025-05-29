@@ -273,10 +273,33 @@ html {
   color: var(--rosa);
 }
 
+
 /* -------------------FORMULÁRIO----------------------- */
+.barra-progresso {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+.barra{
+  border-radius: 20px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  height: 10px;
+  width: 50%;
+  margin-left: 5px;
+  background-color: #aaa8a8;
+}
+.barra-porcentagem{
+  background-color: var(--rosa);
+  border-radius: 20px;
+  width: 1%;
+  height: 100%;
+}
 .perguntas {
-  font-size: 25px;
-  font-weight: 500;
+  font-size: 22px;
+  margin-top: 10px;
   display: flex;
   flex-direction: column;
   text-align: center;
