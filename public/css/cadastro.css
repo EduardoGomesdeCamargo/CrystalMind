@@ -241,7 +241,7 @@ body {
 
 .botao-login-cadastrar {
   background-color: transparent;
-  border: solid 1px var(--rosa);
+  border: solid 2px var(--rosa);
   color: #323232;
   font-weight: 800;
 }

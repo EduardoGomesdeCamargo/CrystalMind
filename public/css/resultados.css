@@ -1,0 +1,192 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+  --azul: #32b9cd;
+  --rosa: #fa5d92;
+  --rosa-claro: rgb(252, 158, 181);
+  --verde: rgb(49, 190, 2);
+  --vermelho: rgb(243, 0, 0);
+  --cinza: rgb(126, 125, 125);
+}
+
+body {
+  background: #ebebeb;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins";
+  overflow-x: hidden;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* ------------------------------------ MENU -------------------------------- */
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 70px;
+  background-color: rgb(255, 255, 255);
+  border-bottom: 2px solid var(--rosa);
+  z-index: 1000;
+  display: flex;
+  justify-content: space-between;
+}
+
+.logo-position {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  padding: 10px 30px;
+}
+
+.lista {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 10px 30px;
+}
+
+.logo img {
+  height: 50px;
+}
+
+.nav-list {
+  list-style: none;
+  display: flex;
+  gap: 20px;
+  padding: 0;
+  margin: 0;
+}
+
+.nav-list span {
+  font-size: 20px;
+  color: var(--rosa);
+}
+
+.nav-list li a {
+  padding: 10px 15px;
+  border: none;
+  border-radius: 8px;
+  color: var(--rosa);
+  text-decoration: none;
+  transition: 0.3s;
+  background-color: transparent;
+}
+
+.nav-list li a:hover {
+  background-color: var(--rosa);
+  color: rgb(255, 255, 255);
+  border: 2px solid var(--rosa);
+}
+
+.pagina-atual {
+  text-decoration: underline;
+  font-weight: 900;
+  color: var(--rosa);
+}
+
+/* -------------------------------BANNER GEM----------------------------------- */
+.banner-gem {
+  padding: 20px;
+  padding-left: 50px;
+  margin-top: 70px;
+  background-color: #b02359;
+  width: 90%;
+  height: 300px;
+  border-bottom-right-radius: 40px;
+  border-top-right-radius: 40px;
+}
+
+.banner-gem-texto {
+  color: white;
+}
+
+.banner-gem-texto p {
+  font-weight: bold;
+  font-size: 20px;
+}
+
+.banner-gem-texto h1 {
+  font-size: 70px;
+  margin-bottom: 0;
+}
+
+.banner-gem-texto h3 {
+  margin-top: 0;
+  color: pink;
+  font-size: 25px;
+}
+
+.garnetImg {
+  height: 350px;
+  position: absolute;
+  margin-left: 46%;
+  margin-top: 60px;
+}
+
+.garnetGlassesImg {
+  height: 250px;
+  position: absolute;
+  margin-left: 60%;
+  margin-top: 120px;
+}
+
+/* ------------------------CONTEÚDO-------------------- */
+.resultado-conteudo {
+  color: rgb(57, 57, 57);
+  font-size: 18px;
+  padding: 100px 200px 20px 200px;
+  text-align: justify;
+}
+
+.resultado-conteudo h1 {
+  text-align: center;
+}
+
+.conteudo-cadastrar {
+  margin-top: 30px;
+}
+.conteudo-cadastrar a{
+  margin-top: 50px;
+  color: var(--rosa);
+  font-weight: bold;
+  transition: 0.3s;
+
+}
+
+.conteudo-cadastrar a:hover {
+  color: var(--rosa-claro);
+}
+
+
+/* ------------------------RODAPÉ-------------------- */
+.footer {
+  background-color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  padding: 20px 100px;
+  border-top: 2px solid var(--rosa);
+}
+
+.footer-sobre {
+  display: flex;
+  align-items: center;
+}
+
+.footer-sobre a {
+  color: var(--rosa);
+  font-weight: bolder;
+}
+
+.footer-credit {
+  justify-content: flex-start;
+  font-size: 15px;
+  color: black;
+}
+
+.footer-left {
+  display: flex;
+}
