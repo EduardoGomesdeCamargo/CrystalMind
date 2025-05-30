@@ -262,6 +262,8 @@
         </div>
     </div>
 
+    <button style="display: none;" id="olaa">olaaaaaa</button>
+
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-left">
@@ -638,7 +640,7 @@
             <button class="botao-avancar" onclick="avancarTeste()">Avançar</button>
         </div>`,
 
-        `<!-- JULGAMENTO (J) X PERCEPCAO (P) -->
+        `<!-- JULGAMENTO/PLANEJADOR (J) X PERCEPCAO/DESBRAVADOR (P) -->
         <!-- 16 -->
         <p>Você costuma se sentir mais confortável com um plano bem definido do que com decisões de última hora.</p>
 
@@ -946,56 +948,62 @@
 
         id_perguntas.innerHTML = listaPerguntas[pergunta_atual];
     }
-    var personalidade = 1;
     function mostrarResultado() {
+        var personalidade = '';
 
         // CALCULANDO DICOTOMIA E/I
-        var totalExtrovertido = extrovertido.length + (neutroExtrovertido.length) / 2;
-        var totalIntrovertido = introvertido.length + (neutroIntrovertido.length) / 2;
-        if (totalExtrovertido > totalIntrovertido) {
+        var porcentagemExtrovertido = (extrovertido.length + (neutroExtrovertido.length / 2)) * 100 / 5;
+        var porcentagemIntrovertido = 100 - porcentagemExtrovertido;
+        if (porcentagemExtrovertido > porcentagemIntrovertido) {
             personalidade = 'E';
         } else {
             personalidade = 'I';
         }
 
         // CALCULANDO DICOTOMIA S/N
-        var totalSensacao = sensacao.length + (neutroSensacao.length / 2);
-        var totalIntuitivo = intuitivo.length + (neutroIntuitivo.length / 2);
-        if (totalSensacao > totalIntuitivo) {
+        var porcentagemSensacao = (sensacao.length + (neutroSensacao.length / 2)) * 100 / 5;
+        var porcentagemIntuitivo = 100 - porcentagemSensacao;
+        if (porcentagemSensacao > porcentagemIntuitivo) {
             personalidade += 'S';
         } else {
             personalidade += 'N';
         }
         // CALCULANDO DICOTOMIA T/F
-        var totalThinking = thinking.length + (neutroThinking.length / 2);
-        var totalFeeling = feeling.length + (neutroFeeling.length / 2);
-        if (totalThinking > totalFeeling) {
+        var porcentagemThinking = (thinking.length + (neutroThinking.length / 2)) * 100 / 5;
+        var porcentagemFeeling = 100 - porcentagemThinking;
+        if (porcentagemThinking > porcentagemFeeling) {
             personalidade += 'T';
         } else {
             personalidade += 'F';
         }
 
         // CALCULANDO DICOTOMIA J/P
-        var totalJulgamento = julgamento.length + (neutroJulgamento.length / 2);
-        var totalPercepcao = percepcao.length + (neutroPercepcao.length / 2);
-        if (totalThinking > totalFeeling) {
+        var porcentagemJulgamento = (julgamento.length + (neutroJulgamento.length / 2)) * 100 / 5;
+        var porcentagemPercepcao = 100 - porcentagemJulgamento;
+        if (porcentagemJulgamento > porcentagemPercepcao) {
             personalidade += 'J';
         } else {
             personalidade += 'P';
         }
 
-        alert(personalidade);
-        console.log(sensacao);
-        console.log(intuitivo);
+        olaa.style.display = "block";
+        sessionStorage.RESULTADO_PREVIO = personalidade;
 
-        console.log(extrovertido);
-        console.log(introvertido);
+        sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO = porcentagemExtrovertido;
+        sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO = porcentagemIntrovertido;
 
-        console.log(thinking);
-        console.log(feeling);
+        sessionStorage.PORCENTAGEM_SENSASAO_PREVIO = porcentagemSensacao;
+        sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO = porcentagemIntuitivo;
 
-        console.log(julgamento);
-        console.log(percepcao);
+        sessionStorage.PORCENTAGEM_THINKING_PREVIO = porcentagemThinking;
+        sessionStorage.PORCENTAGEM_FEELING_PREVIO = porcentagemFeeling;
 
+        sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO = porcentagemJulgamento;
+        sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO = porcentagemPercepcao;
+
+        setTimeout(() => {
+            olaa.style.display = "none";
+            window.location = "Resultados.html";
+        }, "1000");
     }
 </script>

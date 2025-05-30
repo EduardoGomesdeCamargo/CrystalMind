@@ -43,7 +43,7 @@
         <div class="banner-gem-texto">
             <p>Sua Gem é:</p>
             <h1>GARNET</h1>
-            <h3>Personalidade: INTP</h3>
+            <h3 id="h3_personalidade">Personalidade: INTP</h3>
         </div>
     </div>
 
@@ -94,6 +94,7 @@
 
 </html>
 <script>
+    h3_personalidade.innerHTML = `Personalidade: ${sessionStorage.RESULTADO_PREVIO}`;
 
-
+    
 </script>

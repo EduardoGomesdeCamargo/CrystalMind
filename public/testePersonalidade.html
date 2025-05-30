@@ -900,7 +900,7 @@
         // CALCULANDO DICOTOMIA J/P
         var totalJulgamento = julgamento.length + (neutroJulgamento.length / 2);
         var totalPercepcao = percepcao.length + (neutroPercepcao.length / 2);
-        if (totalThinking > totalFeeling) {
+        if (totalJulgamento > totalPercepcao) {
             personalidade += 'J';
         } else {
             personalidade += 'P';
@@ -918,6 +918,5 @@
 
         console.log(julgamento);
         console.log(percepcao);
-
     }
 </script>

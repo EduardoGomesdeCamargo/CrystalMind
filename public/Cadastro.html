@@ -55,14 +55,6 @@
       <div class="card card-cadastro">
         <h2>Cadastre-se</h2>
         <div class="formulario">
-          <!--
-                         Para inserir mais um campo, copie uma das inputs abaixo.
-                         Assim que inserir vá para o script abaixo.
-                     -->
-          <!-- <div class="campo">
-            <span>Código de ativação:</span>
-            <input id="codigo_input" type="text" placeholder="Insira aqui seu código" />
-          </div> -->
 
           <div class="campo">
             <span>Primeiro Nome:</span>
@@ -115,28 +107,6 @@
 </body>
 
 </html>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 <script>
 
   // Array para armazenar empresas cadastradas para validação de código de ativação 
@@ -179,8 +149,6 @@
       finalizarAguardar();
       return false;
     }
-
-
 
 
     // Verificando se o email contem "@" 
@@ -251,7 +219,16 @@
         primeiro_nomeServer: primeiro_nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        sobrenomeServer: sobrenomeVar
+        sobrenomeServer: sobrenomeVar,
+        personalidadeServer: sessionStorage.RESULTADO_PREVIO,
+        porcentagemExtrovertido: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
+        porcentagemIntrovertido: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
+        porcentagemSensacao: sessionStorage.PORCENTAGEM_SENSASAO_PREVIO,
+        porcentagemIntuitivo: sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO,
+        porcentagemThinking: sessionStorage.PORCENTAGEM_THINKING_PREVIO,
+        porcentagemFeeling: sessionStorage.PORCENTAGEM_FEELING_PREVIO,
+        porcentagemJulgamento: sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO,
+        porcentagemPercepcao: sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO
       }),
     })
       .then(function (resposta) {
