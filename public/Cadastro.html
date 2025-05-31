@@ -219,16 +219,7 @@
         primeiro_nomeServer: primeiro_nomeVar,
         emailServer: emailVar,
         senhaServer: senhaVar,
-        sobrenomeServer: sobrenomeVar,
-        personalidadeServer: sessionStorage.RESULTADO_PREVIO,
-        porcentagemExtrovertido: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
-        porcentagemIntrovertido: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
-        porcentagemSensacao: sessionStorage.PORCENTAGEM_SENSASAO_PREVIO,
-        porcentagemIntuitivo: sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO,
-        porcentagemThinking: sessionStorage.PORCENTAGEM_THINKING_PREVIO,
-        porcentagemFeeling: sessionStorage.PORCENTAGEM_FEELING_PREVIO,
-        porcentagemJulgamento: sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO,
-        porcentagemPercepcao: sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO
+        sobrenomeServer: sobrenomeVar
       }),
     })
       .then(function (resposta) {
@@ -244,6 +235,7 @@
             window.location = "login.html";
           }, "2000");
 
+          cadastrarResultado();
           limparFormulario();
           finalizarAguardar();
         } else {
@@ -258,7 +250,45 @@
     return false;
   }
 
+  function cadastrarResultado() {
+        // Enviando o valor da nova input
+    fetch("/teste/cadastrar", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        // crie um atributo que recebe o valor recuperado aqui
+        // Agora vá para o arquivo routes/usuario.js
+        personalidadeServer: sessionStorage.RESULTADO_PREVIO,
+        porcentagemExtrovertidoServer: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
+        porcentagemIntrovertidoServer: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
+        porcentagemSensacaoServer: sessionStorage.PORCENTAGEM_SENSASAO_PREVIO,
+        porcentagemIntuitivoServer: sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO,
+        porcentagemThinkingServer: sessionStorage.PORCENTAGEM_THINKING_PREVIO,
+        porcentagemFeelingServer: sessionStorage.PORCENTAGEM_FEELING_PREVIO,
+        porcentagemJulgamentoServer: sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO,
+        porcentagemPercepcaoServer: sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO
+      }),
+    })
+      .then(function (resposta) {
+        console.log("resposta: ", resposta);
 
+        if (resposta.ok) {
+          cadastrarResultado();
+          limparFormulario();
+          finalizarAguardar();
+        } else {
+          throw "Houve um erro ao tentar realizar o cadastro!";
+        }
+      })
+      .catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        finalizarAguardar();
+      });
+
+    return false;
+  }
 
   function sumirMensagem() {
     cardErro.style.display = "none";
