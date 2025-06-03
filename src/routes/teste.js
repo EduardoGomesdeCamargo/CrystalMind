@@ -9,7 +9,7 @@ router.post("/cadastrar", function (req, res) {
 });
 
 router.get("/listar", function (req, res) {
-    // função a ser criada quando acessar /teste/listar
+    // fuwaqnção a ser criada quando acessar /teste/listar
     testeController.listar(req, res);
 })
 

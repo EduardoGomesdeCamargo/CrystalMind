@@ -159,11 +159,11 @@
                 resposta.json().then(json => {
                     console.log(json);
                     console.log(JSON.stringify(json));
-                    sessionStorage.EMAIL_PESSOA_JURIDICA = json.email_comercial;
-                    sessionStorage.RAZAO_PESSOA_JURIDICA = json.razao_social;
-                    sessionStorage.TELEFONE_PESSOA_JURIDICA = json.telefone_comercial;
-                    sessionStorage.CNPJ_PESSOA_JURIDICA = json.cnpj;
-                    sessionStorage.ID_PESSOA_JURIDICA = json.id
+                    sessionStorage.EMAIL = json.email;
+                    sessionStorage.PRIMEIRO_NOME = json.primeiro_nome;
+                    sessionStorage.SENHA = json.senha;
+                    sessionStorage.SOBRENOME = json.sobrenome;
+                    sessionStorage.ID = json.id
 
                     setTimeout(function () {
                         window.location = "testePersonalidade.html";

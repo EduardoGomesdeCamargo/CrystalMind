@@ -234,8 +234,9 @@
           setTimeout(() => {
             window.location = "login.html";
           }, "2000");
-
-          cadastrarResultado();
+          sessionStorage.EMAIL_CADASTRO = emailVar;
+          coletarID();
+          cadastrarResultado(emailVar);
           limparFormulario();
           finalizarAguardar();
         } else {
@@ -250,8 +251,20 @@
     return false;
   }
 
-  function cadastrarResultado() {
-        // Enviando o valor da nova input
+  function coletarID() {
+
+    fetch("/teste/listar")
+      .then(function (resposta) {
+        return resposta.json();
+        console.log(resposta)
+      })
+      .catch(function (err) {
+        console.log(err);
+      })
+  }
+
+  function cadastrarResultado(emailVar) {
+    // Enviando o valor da nova input
     fetch("/teste/cadastrar", {
       method: "POST",
       headers: {
@@ -260,6 +273,7 @@
       body: JSON.stringify({
         // crie um atributo que recebe o valor recuperado aqui
         // Agora vá para o arquivo routes/usuario.js
+        emailServer: emailVar,
         personalidadeServer: sessionStorage.RESULTADO_PREVIO,
         porcentagemExtrovertidoServer: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
         porcentagemIntrovertidoServer: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
@@ -273,9 +287,8 @@
     })
       .then(function (resposta) {
         console.log("resposta: ", resposta);
-
+        console.log(listar);
         if (resposta.ok) {
-          cadastrarResultado();
           limparFormulario();
           finalizarAguardar();
         } else {

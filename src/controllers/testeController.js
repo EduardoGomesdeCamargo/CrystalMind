@@ -1,20 +1,30 @@
 var testeModel = require("../models/testeModel");
-var fk_usuario;
+
 function listar(req, res) {
-    testeModel.listar().then(function (resultado) {
+    var email = sessionStorage.EMAIL_CADASTRO;
+
+    if (email == undefined) {
+        res.status(400).send("Seu email está undefined!");
+    }
+
+    testeModel.listar(email).then(function (resultado) {
         // precisamos informar que o resultado voltará para o front-end como uma resposta em json
         res.status(200).json(resultado);
-        fk_usuario = resultado;
-        console.log('fkUsuario:' + fk_usuario)
-        console.log('fkUsuario:' + resultado)
+
+        res.json({
+            id: resultado[0].id
+        });
+        console.log(`funcao listar testeConstroler ${resultado}`);
 
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
 
+var fk_usuario = 0;
 function cadastrar(req, res) {
     // Criando variáveis que irão recuperar os valores do arquivo index.html/testePersonalidade.html
+
     var personalidade = req.body.personalidadeServer;
     var porcentagemExtrovertido = req.body.porcentagemExtrovertidoServer;
     var porcentagemIntrovertido = req.body.porcentagemIntrovertidoServer;
@@ -45,10 +55,26 @@ function cadastrar(req, res) {
     } else if (porcentagemPercepcao == undefined) {
         res.status(400).send("Sua porcentagemPercepcao está undefined!");
     }
+
+    // COLETANDO ID DO USUARIO
+    // testeModel.listar(email).then(function (resultado) {
+    //     // precisamos informar que o resultado voltará para o front-end como uma resposta em json
+    //     res.status(200).json(resultado[0]);
+    //     console.log(resultado[0])
+    //     resultado.json({
+    //         fk_usuario: resultado[0],
+    //     });
+    //     console.log('fkUsuario:' + fk_usuario)
+
+    // }).catch(function (erro) {
+    //     res.status(500).json(erro.sqlMessage);
+    // })
+
+    // INSERINDO RESULTADO
     testeModel.cadastrar(fk_usuario, personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao)
         .then(function (resposta) {
             res.status(200).send("Teste criado com sucesso");
-        }).catch(function(erro) {
+        }).catch(function (erro) {
             res.status(500).json(erro.sqlMessage);
         })
 }

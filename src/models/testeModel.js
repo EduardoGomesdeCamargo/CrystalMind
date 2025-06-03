@@ -1,8 +1,8 @@
 var database = require("../database/config")
 
-function listar() {
+function listar(email) {
     var instrucao = `
-        SELECT id_usuario FROM usuario where;
+        SELECT id FROM usuario WHERE email = '${email}';
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
