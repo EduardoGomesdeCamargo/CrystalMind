@@ -84,7 +84,13 @@ function cadastrar(req, res) {
                         "\nHouve um erro ao realizar o cadastro! Erro: ",
                         erro.sqlMessage
                     );
-                    res.status(500).json(erro.sqlMessage);
+                    if (erro.errno == "1062") {
+                        res.status(500).json({
+                            mensagem: "Esse e-mail já foi cadastrado!"
+                        })
+                    } else{
+                        res.status(500).json(erro.sqlMessage);
+                    }
                 }
             );
     }

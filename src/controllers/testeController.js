@@ -1,8 +1,11 @@
 var testeModel = require("../models/testeModel");
 
 function listar(req, res) {
-    var email = sessionStorage.EMAIL_CADASTRO;
+    console.log('o conteudo do req body é esse: ' + req.params.emailVar);
 
+    var email = req.params.email;
+
+    console.log('email no controller ' + email);
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     }
@@ -10,21 +13,19 @@ function listar(req, res) {
     testeModel.listar(email).then(function (resultado) {
         // precisamos informar que o resultado voltará para o front-end como uma resposta em json
         res.status(200).json(resultado);
-
+        console.log('id ', resultado[0].id)
         res.json({
             id: resultado[0].id
         });
-        console.log(`funcao listar testeConstroler ${resultado}`);
-
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
 }
 
-var fk_usuario = 0;
 function cadastrar(req, res) {
     // Criando variáveis que irão recuperar os valores do arquivo index.html/testePersonalidade.html
 
+    var fk_usuario = req.body.fk_usuarioServer;
     var personalidade = req.body.personalidadeServer;
     var porcentagemExtrovertido = req.body.porcentagemExtrovertidoServer;
     var porcentagemIntrovertido = req.body.porcentagemIntrovertidoServer;
@@ -54,6 +55,8 @@ function cadastrar(req, res) {
         res.status(400).send("Sua porcentagemJulgamento está undefined!");
     } else if (porcentagemPercepcao == undefined) {
         res.status(400).send("Sua porcentagemPercepcao está undefined!");
+    } else if (fk_usuario == undefined) {
+        res.status(400).send("Seu ID está undefined!");
     }
 
     // COLETANDO ID DO USUARIO

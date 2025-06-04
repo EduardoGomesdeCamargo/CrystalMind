@@ -46,11 +46,13 @@
   <div class="login">
     <img class="img-backgroundBeach" src="./Assets/backgroundBeach.png" alt="">
 
+    <!-- ERRO POP UP -->
     <div class="alerta_erro">
       <div class="card_erro" id="cardErro">
         <span id="mensagem_erro"></span>
       </div>
     </div>
+
     <div class="container">
       <div class="card card-cadastro">
         <h2>Cadastre-se</h2>
@@ -118,10 +120,13 @@
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
     var primeiro_nomeVar = nome_input.value;
+    var sobrenomeVar = sobrenome_input.value;
     var emailVar = email_input.value;
     var senhaVar = senha_input.value;
     var confirmacaoSenhaVar = confirmacao_senha_input.value;
-    var sobrenomeVar = sobrenome_input.value;
+
+    var emailCorreto = false;
+
 
     // Verificando se há algum campo em branco
     if (primeiro_nomeVar == "" ||
@@ -130,178 +135,221 @@
       confirmacaoSenhaVar == "" ||
       sobrenomeVar == "") {
 
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML =
-        "(Mensagem de erro para todos os campos em branco)";
-
-      finalizarAguardar();
-      return false;
-    } else {
-      setInterval(sumirMensagem, 5000);
+      div_erros_login.style.display = "block";
+      div_erros_login.innerHTML =
+        "Preencha todos os campos para prosseguir.";
     }
-
 
     // Verificando se o nome é maior que 1 char
-    if (primeiro_nomeVar.length == 1) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "(Mensagem de erro para o nome incorreto)";
-
-      finalizarAguardar();
-      return false;
+    else if (primeiro_nomeVar.length == 1) {
+      div_erros_login.style.display = "block";
+      div_erros_login.innerHTML = "Seu primeiro nome deve ter mais do que um caractere!";
+    } else if (sobrenomeVar.length == 1) {
+      div_erros_login.style.display = "block";
+      div_erros_login.innerHTML = "Seu sobrenome deve ter mais do que um caractere!";
     }
 
+    // Verificando email
+    else {
+      if (emailVar.length <= 4) {
+        div_erros_login.style.display = "block";
+        div_erros_login.innerHTML = "E-mail muito curto!";
+      } else {
+        if (emailVar.includes("@")) {
+          if (emailVar.includes(".")) {
+            let contArroba = 0;
+            let contPonto = 0;
 
-    // Verificando se o email contem "@" 
-    var contArroba = 0;
-    var contPonto = 0
-    for (let i = 0; i < emailVar.length; i++) {
-      if (emailVar[i] == "@") {
-        contArroba += 1;
-      }
-      if (emailVar[i] == ".") { //Validação para ver se tem "."
-        contPonto += 1;
-      }
-    }
+            for (let i = 0; i < emailVar.length; i++) {
+              // Verificando se o email contem "@" 
+              if (emailVar[i] == "@") {
+                emailCorreto = true;
+                contArroba += 1;
 
-    if (contArroba > 1) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "(Mensagem de erro para o uso excessivo do @)";
+                if (contArroba > 1) {
+                  emailCorreto = false;
+                  div_erros_login.style.display = "block";
+                  div_erros_login.innerHTML = 'Seu email deve conter apenas um "@" !';
+                  break;
+                }
+                //Validação para ver se tem "."
+                if (emailVar[i] == ".") {
+                  contPonto += 1;
 
-      finalizarAguardar();
-      return false;
-    } else if (contArroba == 0) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "(Mensagem de erro para a falta de uso do @)";
+                  if (contPonto > 1) {
+                    emailCorreto = false;
+                    div_erros_login.style.display = "block";
+                    div_erros_login.innerHTML = 'Seu email deve conter apenas um "." !';
+                    break;
+                  }
+                }
+              }
+            }
+          } else {
+            emailCorreto = false;
+            div_erros_login.style.display = "block";
+            div_erros_login.innerHTML = 'Seu email deve conter um "." !';
+          }
 
-      finalizarAguardar();
-      return false;
-    }
-
-    // Verificando se o email contem "."
-
-
-    if (contPonto == 0) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "(Mensagem de erro para a falta de uso do '.')";
-
-      finalizarAguardar();
-      return false;
-    }
-
-    // Verificando se a senha tem no min 7 digitos
-    if (senhaVar.length < 7) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "(Mensagem de erro para o tamanho da senha)";
-
-      finalizarAguardar();
-      return false;
-    }
-
-    // Verificando se a senha tem no min 7 digitos
-    if (senhaVar != confirmacaoSenhaVar) {
-      cardErro.style.display = "block";
-      mensagem_erro.innerHTML = "(Mensagem de erro para a divergencia das senhas)";
-
-      finalizarAguardar();
-      return false;
-    }
-
-
-    // Enviando o valor da nova input
-    fetch("/usuarios/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        primeiro_nomeServer: primeiro_nomeVar,
-        emailServer: emailVar,
-        senhaServer: senhaVar,
-        sobrenomeServer: sobrenomeVar
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-
-        if (resposta.ok) {
-          cardErro.style.display = "block";
-
-          mensagem_erro.innerHTML =
-            "Cadastro realizado com sucesso! Redirecionando para tela de Login...";
-
-          setTimeout(() => {
-            window.location = "login.html";
-          }, "2000");
-          sessionStorage.EMAIL_CADASTRO = emailVar;
-          coletarID();
-          cadastrarResultado(emailVar);
-          limparFormulario();
-          finalizarAguardar();
         } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
+          emailCorreto = false;
+          div_erros_login.style.display = "block";
+          div_erros_login.innerHTML = 'Seu email deve conter um "@" !';
         }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
+      }
+    }
 
-    return false;
+    if (emailCorreto) {
+
+      // Verificando se a senha tem no min 7 digitos
+      if (senhaVar.length < 7) {
+        div_erros_login.style.display = "block";
+        div_erros_login.innerHTML = "Sua senha deve ter pelo menos 8 caracteres!";
+      }
+
+      // Verificando se a senha de confirmação é igual à senha
+      else if (senhaVar != confirmacaoSenhaVar) {
+        div_erros_login.style.display = "block";
+        div_erros_login.innerHTML = "Sua senha e sua senha de confirmação devem ser iguais!";
+
+      } else {
+        div_erros_login.style.display = "none"
+
+        // Enviando o valor da nova input
+        fetch("/usuarios/cadastrar", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            primeiro_nomeServer: primeiro_nomeVar,
+            emailServer: emailVar,
+            senhaServer: senhaVar,
+            sobrenomeServer: sobrenomeVar
+          }),
+        })
+          .then(function (resposta) {
+            console.log("resposta: ", resposta);
+
+            if (resposta.ok) {
+              cardErro.style.display = "block";
+              mensagem_erro.innerHTML =
+                "<img height='80px' src='./Assets/ok.png' alt=''><h3>Cadastro realizado com sucesso!</h3> <br>Redirecionando para tela de Login...";
+
+              setTimeout(() => {
+                cardErro.style.display = "none"; 
+
+                window.location = "login.html";
+              }, "2000");
+
+              // coletarID(emailVar); // Inserir teste antes
+              // cadastrarResultado(emailVar);
+            } else {
+              resposta.json().then(function (json) {
+              alert(json.mensagem);
+            })
+              throw "Houve um erro ao tentar realizar o cadastro!";
+            }
+          })
+          .catch(function (resposta) {
+            // resposta.json().then(function (json) {
+            //   console.log(json);
+            // })
+            console.log(`#ERRO: ${resposta}`);
+            finalizarAguardar();
+          });
+
+        return false;
+      }
+    }
   }
 
-  function coletarID() {
+  // Inserir teste antes INICIO
+  // function coletarID(emailVar) {
 
-    fetch("/teste/listar")
-      .then(function (resposta) {
-        return resposta.json();
-        console.log(resposta)
-      })
-      .catch(function (err) {
-        console.log(err);
-      })
-  }
+  //   fetch(`/teste/listar/${emailVar}`, {
+  //     // fetch faz requisições em outros arquivos; nesse caso, ele chama a função autenticar no arquivo usuarioController.js do diretório controllers para "puxar" valores para cá
+  //     // ele também envia (requisição, POST) os dados do login (email e senha) para usuario.js da pasta routes
 
-  function cadastrarResultado(emailVar) {
-    // Enviando o valor da nova input
-    fetch("/teste/cadastrar", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        // crie um atributo que recebe o valor recuperado aqui
-        // Agora vá para o arquivo routes/usuario.js
-        emailServer: emailVar,
-        personalidadeServer: sessionStorage.RESULTADO_PREVIO,
-        porcentagemExtrovertidoServer: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
-        porcentagemIntrovertidoServer: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
-        porcentagemSensacaoServer: sessionStorage.PORCENTAGEM_SENSASAO_PREVIO,
-        porcentagemIntuitivoServer: sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO,
-        porcentagemThinkingServer: sessionStorage.PORCENTAGEM_THINKING_PREVIO,
-        porcentagemFeelingServer: sessionStorage.PORCENTAGEM_FEELING_PREVIO,
-        porcentagemJulgamentoServer: sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO,
-        porcentagemPercepcaoServer: sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO
-      }),
-    })
-      .then(function (resposta) {
-        console.log("resposta: ", resposta);
-        console.log(listar);
-        if (resposta.ok) {
-          limparFormulario();
-          finalizarAguardar();
-        } else {
-          throw "Houve um erro ao tentar realizar o cadastro!";
-        }
-      })
-      .catch(function (resposta) {
-        console.log(`#ERRO: ${resposta}`);
-        finalizarAguardar();
-      });
+  //     method: "GET",
+  //     headers: {
+  //       "Content-Type": "application/json"
+  //     }
+  //   }).then(function (resposta) {
+  //     console.log("ESTOU NO THEN DO entrar()!")
 
-    return false;
-  }
+  //     if (resposta.ok) {
+  //       console.log(`Resposta: ${resposta}`);
+
+  //       resposta.json().then(json => {
+  //         console.log(json);
+  //         console.log(JSON.stringify(json));
+  //         console.log(`Resposta String ID: ${JSON.stringify(json.id)}`)
+  //         // let id_usuario = json["id "]
+  //         // console.log(`id_usuario: ${id_usuario}`)
+
+  //         sessionStorage.ID_USER = json.id;
+  //       });
+
+  //     } else {
+
+  //       console.log("Houve um erro ao tentar realizar o cadastro!");
+
+  //       resposta.text().then(texto => {
+  //         console.error(texto);
+  //         finalizarAguardar(texto);
+  //       });
+  //     }
+
+  //   }).catch(function (erro) {
+  //     console.log(erro);
+  //   })
+
+  //   return false;
+  // }
+
+  // function cadastrarResultado(emailVar) {
+  //   // Enviando o valor da nova input
+  //   fetch("/teste/cadastrar", {
+  //     method: "POST",
+  //     headers: {
+  //       "Content-Type": "application/json",
+  //     },
+  //     body: JSON.stringify({
+  //       // crie um atributo que recebe o valor recuperado aqui
+  //       // Agora vá para o arquivo routes/usuario.js
+  //       emailServer: emailVar,
+  //       personalidadeServer: sessionStorage.RESULTADO_PREVIO,
+  //       porcentagemExtrovertidoServer: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
+  //       porcentagemIntrovertidoServer: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
+  //       porcentagemSensacaoServer: sessionStorage.PORCENTAGEM_SENSASAO_PREVIO,
+  //       porcentagemIntuitivoServer: sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO,
+  //       porcentagemThinkingServer: sessionStorage.PORCENTAGEM_THINKING_PREVIO,
+  //       porcentagemFeelingServer: sessionStorage.PORCENTAGEM_FEELING_PREVIO,
+  //       porcentagemJulgamentoServer: sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO,
+  //       porcentagemPercepcaoServer: sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO
+  //     }),
+  //   })
+  //     .then(function (resposta) {
+  //       console.log("resposta: ", resposta);
+  //       console.log(listar);
+  //       if (resposta.ok) {
+  //         limparFormulario();
+  //         finalizarAguardar();
+  //       } else {
+  //         throw "Houve um erro ao tentar realizar o cadastro!";
+  //       }
+  //     })
+  //     .catch(function (resposta) {
+  //       console.log(`#ERRO: ${resposta}`);
+  //       finalizarAguardar();
+  //     });
+
+  //   return false;
+  // }
+  // Inserir teste antes FIM
 
   function sumirMensagem() {
     cardErro.style.display = "none";

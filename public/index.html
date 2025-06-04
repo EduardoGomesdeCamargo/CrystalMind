@@ -261,9 +261,6 @@
             <button class="botao-avancar" onclick="avancarTeste()">Avançar</button>
         </div>
     </div>
-
-    <button style="display: none;" id="olaa">olaaaaaa</button>
-
     <!-- FOOTER -->
     <footer class="footer">
         <div class="footer-left">
@@ -756,7 +753,7 @@
 
         <div>
             <button class="botao-avancar botao-voltar" onclick="retornarTeste()">Voltar</button>
-            <button class="botao-avancar" onclick="avancarTeste()">Avançar</button>
+            <button class="botao-avancar" onclick="avancarTeste()">Ver resultado</button>
         </div>`
     ]
 
@@ -952,7 +949,9 @@
         var personalidade = '';
 
         // CALCULANDO DICOTOMIA E/I
-        var porcentagemExtrovertido = (extrovertido.length + (neutroExtrovertido.length / 2)) * 100 / 5;
+        const totalEI = extrovertido.length + introvertido.length + neutroExtrovertido.length * 0.51 + neutroIntrovertido.length * 0.51;
+
+        var porcentagemExtrovertido = Math.floor((extrovertido.length + (neutroExtrovertido.length * 0.51)) * 100 / totalEI);
         var porcentagemIntrovertido = 100 - porcentagemExtrovertido;
         if (porcentagemExtrovertido > porcentagemIntrovertido) {
             personalidade = 'E';
@@ -961,7 +960,9 @@
         }
 
         // CALCULANDO DICOTOMIA S/N
-        var porcentagemSensacao = (sensacao.length + (neutroSensacao.length / 2)) * 100 / 5;
+        const totalSN = sensacao.length + intuitivo.length + neutroSensacao.length * 0.51 + neutroIntuitivo.length * 0.51;
+
+        var porcentagemSensacao = Math.floor((sensacao.length + (neutroSensacao.length * 0.51)) * 100 / totalSN);
         var porcentagemIntuitivo = 100 - porcentagemSensacao;
         if (porcentagemSensacao > porcentagemIntuitivo) {
             personalidade += 'S';
@@ -969,7 +970,9 @@
             personalidade += 'N';
         }
         // CALCULANDO DICOTOMIA T/F
-        var porcentagemThinking = (thinking.length + (neutroThinking.length / 2)) * 100 / 5;
+        const totalTF = thinking.length + feeling.length + neutroThinking.length * 0.51 + neutroFeeling.length * 0.51;
+
+        var porcentagemThinking = Math.floor((thinking.length + (neutroThinking.length * 0.51)) * 100 / totalTF);
         var porcentagemFeeling = 100 - porcentagemThinking;
         if (porcentagemThinking > porcentagemFeeling) {
             personalidade += 'T';
@@ -978,7 +981,9 @@
         }
 
         // CALCULANDO DICOTOMIA J/P
-        var porcentagemJulgamento = (julgamento.length + (neutroJulgamento.length / 2)) * 100 / 5;
+        const totalJP = julgamento.length + percepcao.length + neutroJulgamento.length * 0.51 + neutroPercepcao.length * 0.51;
+
+        var porcentagemJulgamento = Math.floor((julgamento.length + (neutroJulgamento.length * 0.51)) * 100 / totalJP);
         var porcentagemPercepcao = 100 - porcentagemJulgamento;
         if (porcentagemJulgamento > porcentagemPercepcao) {
             personalidade += 'J';
@@ -986,7 +991,6 @@
             personalidade += 'P';
         }
 
-        olaa.style.display = "block";
         sessionStorage.RESULTADO_PREVIO = personalidade;
 
         sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO = porcentagemExtrovertido;
@@ -1002,7 +1006,6 @@
         sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO = porcentagemPercepcao;
 
         setTimeout(() => {
-            olaa.style.display = "none";
             window.location = "Resultados.html";
         }, "1000");
     }

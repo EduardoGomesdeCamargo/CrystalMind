@@ -262,7 +262,10 @@ body {
 }
 
 #div_erros_login {
-  display: none
+  margin-top: 5px;
+  display: none;
+  color: red;
+  font-weight: 400;
 }
 
 
@@ -287,17 +290,18 @@ body {
   display: none;
   background-color: #fff;
   color: black;
-  width: 230px;
+  width: 350px;
   position: fixed;
-  border-radius: 4px;
-  border: #ED145B 3px solid;
+  border-radius: 10px;
+  border: rgb(69, 217, 24) 4px solid;
   padding: 10px;
-  margin-right: 10%;
+  margin-top: 8.5%;
+  margin-right: 30px;
+  text-align: center;
 }
 
 .card_erro #mensagem_erro {
-  font-weight: 500;
-  font-size: 20px;
+  font-size: 18px;
 }
 
 .formulario .tipo_campo {

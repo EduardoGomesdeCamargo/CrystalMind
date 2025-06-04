@@ -165,12 +165,14 @@
                     sessionStorage.SOBRENOME = json.sobrenome;
                     sessionStorage.ID = json.id
 
+                    cardErro.style.display = "block";
+                    mensagem_erro.innerHTML = "<img height='80px' src='./Assets/ok.png' alt=''> <br> Acessando sua conta..."
                     setTimeout(function () {
+                        cardErro.style.display = "none";
                         window.location = "testePersonalidade.html";
-                    }, 1000); // apenas para exibir o loading
+                    }, 2000); // apenas para exibir o loading
 
                 });
-
             } else {
 
                 console.log("Houve um erro ao tentar realizar o login!");

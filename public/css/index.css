@@ -427,7 +427,6 @@ html {
 .opcao-discordo input:checked {
   background-color: var(--vermelho);
 }
-
 /* ------------------------RODAPÉ-------------------- */
 .footer {
   background-color: #ffffff;

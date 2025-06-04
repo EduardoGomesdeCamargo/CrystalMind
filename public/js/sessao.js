@@ -3,6 +3,7 @@ function validarSessao() {
     var email = sessionStorage.EMAIL_PESSOA_JURIDICA;
     var nome = sessionStorage.RAZAO_PESSOA_JURIDICA;
     var cnpj = sessionStorage.CNPJ_PESSOA_JURIDICA;
+    var id = sessionStorage.ID;
 
     var b_usuario = document.getElementById("b_usuario");
 

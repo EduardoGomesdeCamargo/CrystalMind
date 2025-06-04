@@ -10,3 +10,6 @@ create table usuario (
 );
 
 select * from usuario;
+truncate usuario;
+
+

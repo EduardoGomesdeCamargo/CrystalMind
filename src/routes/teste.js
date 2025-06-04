@@ -8,8 +8,8 @@ router.post("/cadastrar", function (req, res) {
     testeController.cadastrar(req, res);
 });
 
-router.get("/listar", function (req, res) {
-    // fuwaqnção a ser criada quando acessar /teste/listar
+router.get("/listar/:email", function (req, res) {
+    // função a ser criada quando acessar /teste/listar
     testeController.listar(req, res);
 })
 

@@ -11,195 +11,198 @@
 </head>
 
 <body>
-    <!-- MENU -->
-    <div class="header">
-        <div class="logo-position">
+
+    <body onload=" cadastrarResultado()">
+
+        <!-- MENU -->
+        <div class="header">
+            <div class="logo-position">
+                <div>
+                    <a href="index.html" class="logo">
+                        <img src="Assets/crystalMindLogotipo.png" alt="Logo" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="lista">
+                <div>
+                    <ul class="nav-list">
+                        <li><a href="testePersonalidade.html">Teste de Personalidade</a></li>
+                        <li><a href="Resultados.html">Seus resultados</a></li>
+                        <li><a href="#">Criador</a></li>
+                        <span>|</span>
+                        <li><a href="Login.html"><img src="" alt="">Sair</a></li>
+                </div>
+                </ul>
+            </div>
+        </div>
+
+        <h1 id="h1_crystalQuiz" class="titulo-crystalQuiz">Crystal Quiz</h1>
+
+        <div class="instrucoes">
+            <div class="card">
+                <p>Seja você mesmo e responda com honestidade para maior precisão.</p>
+                <img src="./Assets/honestidade.png" alt="">
+            </div>
+
+            <div class="card">
+                <p>Descubra qual Gem te representa.</p>
+                <img src="./Assets/stones.png" alt="">
+
+            </div>
+
+            <div id="div_card" class="card">
+                <p>Descubra sua personalidade.</p>
+                <img src="./Assets/dashboardIcon.png" alt="">
+            </div>
+        </div>
+
+        <!-- FORMULARIO -->
+        <div class="barra-progresso">
+            <span id="span_porcentagem">1%</span>
+            <div class="barra">
+                <div class="barra-porcentagem" id="barra"></div>
+            </div>
+        </div>
+
+        <div class="perguntas" id="id_perguntas">
+            <!-- EXTROVERSAO (E) X INTROVERSAO (I) -->
+            <!-- 1 -->
+            <p>Quando você tem um tempo livre, geralmente prefere sair com outras pessoas do que ficar sozinho.</p>
+
+            <form>
+                <div class="opcao-concordo">
+                    <span>Concordo</span>
+                    <input type="radio" name="E" id="input_formulario" value="E" class="exclusivo"
+                        oninput="verificarInput()">
+                </div>
+
+                <div class="opcao-neutro">
+                    <input type="radio" name="neutroE" value="0" class="exclusivo" oninput="verificarInput()">
+                    <span class="span-neutro">Neutro</span>
+
+                    <input type="radio" name="neutroI" value="0" class="exclusivo" oninput="verificarInput()">
+                </div>
+
+                <div class="opcao-discordo">
+                    <input type="radio" name="I" value="I" class="exclusivo" oninput="verificarInput()">
+                    <span>Discordo</span>
+                </div>
+            </form>
+            <hr>
+
+            <!-- 2 -->
+            <p>Em festas ou eventos sociais, você costuma se sentir energizado em vez de cansado.</p>
+
+            <form>
+                <div class="opcao-concordo">
+                    <span>Concordo</span>
+                    <input type="radio" name="E" value="E" class="exclusivo1" oninput="verificarInput()">
+                </div>
+
+                <div class="opcao-neutro">
+                    <input type="radio" name="neutroE" value="0" class="exclusivo1" oninput="verificarInput()">
+                    <span class="span-neutro">Neutro</span>
+
+                    <input type="radio" name="neutroI" value="0" class="exclusivo1" oninput="verificarInput()">
+                </div>
+
+                <div class="opcao-discordo">
+                    <input type="radio" name="I" value="I" class="exclusivo1" oninput="verificarInput()">
+                    <span>Discordo</span>
+                </div>
+            </form>
+            <hr>
+
+            <!-- 3 -->
+            <p>Você normalmente toma a iniciativa para puxar conversa com estranhos.</p>
+
+            <form>
+                <div class="opcao-concordo">
+                    <span>Concordo</span>
+                    <input type="radio" name="E" value="E" class="exclusivo2" oninput="verificarInput()">
+                </div>
+
+                <div class="opcao-neutro">
+                    <input type="radio" name="neutroE" value="0" class="exclusivo2" oninput="verificarInput()">
+                    <span class="span-neutro">Neutro</span>
+
+                    <input type="radio" name="neutroI" value="0" class="exclusivo2" oninput="verificarInput()">
+                </div>
+
+                <div class="opcao-discordo">
+                    <input type="radio" name="I" value="I" class="exclusivo2" oninput="verificarInput()">
+                    <span>Discordo</span>
+                </div>
+            </form>
+            <hr>
+
+            <!-- 4 -->
+            <p>Quando algo te anima ou frustra, você tende a expressar isso facilmente para os outros.</p>
+
+            <form>
+                <div class="opcao-concordo">
+                    <span>Concordo</span>
+                    <input type="radio" name="E" value="E" class="exclusivo3" oninput="verificarInput()">
+                </div>
+
+                <div class="opcao-neutro">
+                    <input type="radio" name="neutroE" value="0" class="exclusivo3" oninput="verificarInput()">
+                    <span class="span-neutro">Neutro</span>
+
+                    <input type="radio" name="neutroI" value="0" class="exclusivo3" oninput="verificarInput()">
+                </div>
+
+                <div class="opcao-discordo">
+                    <input type="radio" name="I" value="I" class="exclusivo3" oninput="verificarInput()">
+                    <span>Discordo</span>
+                </div>
+            </form>
+            <hr>
+
+            <!-- 5 -->
+            <p>Em um grupo de trabalho, você prefere colaborar ativamente em vez de focar em tarefas individuais.</p>
+
+            <form>
+                <div class="opcao-concordo">
+                    <span>Concordo</span>
+                    <input type="radio" name="E" value="E" class="exclusivo4" oninput="verificarInput()">
+                </div>
+
+                <div class="opcao-neutro">
+                    <input type="radio" name="neutroE" value="0" class="exclusivo4" oninput="verificarInput()">
+                    <span class="span-neutro">Neutro</span>
+
+                    <input type="radio" name="neutroI" value="0" class="exclusivo4" oninput="verificarInput()">
+                </div>
+
+                <div class="opcao-discordo">
+                    <input type="radio" name="I" value="I" class="exclusivo4" oninput="verificarInput()">
+                    <span>Discordo</span>
+                </div>
+            </form>
+
             <div>
-                <a href="index.html" class="logo">
-                    <img src="Assets/crystalMindLogotipo.png" alt="Logo" />
-                </a>
+                <button class="botao-avancar" onclick="avancarTeste()">Avançar</button>
             </div>
         </div>
 
-        <div class="lista">
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-left">
+                <img src="Assets/crystalMindLogotipo.png" class="logo" />
+            </div>
+
             <div>
-                <ul class="nav-list">
-                    <li><a href="testePersonalidade.html">Teste de Personalidade</a></li>
-                    <li><a href="Resultados.html">Seus resultados</a></li>
-                    <li><a href="#">Criador</a></li>
-                    <span>|</span>
-                    <li><a href="Login.html"><img src="" alt="">Sair</a></li>
-            </div>
-            </ul>
-        </div>
-    </div>
-
-    <h1 id="h1_crystalQuiz" class="titulo-crystalQuiz">Crystal Quiz</h1>
-
-    <div class="instrucoes">
-        <div class="card">
-            <p>Seja você mesmo e responda com honestidade para maior precisão.</p>
-            <img src="./Assets/honestidade.png" alt="">
-        </div>
-
-        <div class="card">
-            <p>Descubra qual Gem te representa.</p>
-            <img src="./Assets/stones.png" alt="">
-
-        </div>
-
-        <div id="div_card" class="card">
-            <p>Crie uma conta e desbloqueie mais funções.</p>
-            <img src="./Assets/dashboardIcon.png" alt="">
-        </div>
-    </div>
-
-    <!-- FORMULARIO -->
-    <div class="barra-progresso">
-        <span id="span_porcentagem">1%</span>
-        <div class="barra">
-            <div class="barra-porcentagem" id="barra"></div>
-        </div>
-    </div>
-
-    <div class="perguntas" id="id_perguntas">
-        <!-- EXTROVERSAO (E) X INTROVERSAO (I) -->
-        <!-- 1 -->
-        <p>Quando você tem um tempo livre, geralmente prefere sair com outras pessoas do que ficar sozinho.</p>
-
-        <form>
-            <div class="opcao-concordo">
-                <span>Concordo</span>
-                <input type="radio" name="E" id="input_formulario" value="E" class="exclusivo"
-                    oninput="verificarInput()">
+                <p class="footer-credit">© 2025 Crystal Mind</p>
             </div>
 
-            <div class="opcao-neutro">
-                <input type="radio" name="neutroE" value="0" class="exclusivo" oninput="verificarInput()">
-                <span class="span-neutro">Neutro</span>
-
-                <input type="radio" name="neutroI" value="0" class="exclusivo" oninput="verificarInput()">
+            <div class="footer-sobre">
+                <a href="#">Criador</a>
             </div>
+        </footer>
 
-            <div class="opcao-discordo">
-                <input type="radio" name="I" value="I" class="exclusivo" oninput="verificarInput()">
-                <span>Discordo</span>
-            </div>
-        </form>
-        <hr>
-
-        <!-- 2 -->
-        <p>Em festas ou eventos sociais, você costuma se sentir energizado em vez de cansado.</p>
-
-        <form>
-            <div class="opcao-concordo">
-                <span>Concordo</span>
-                <input type="radio" name="E" value="E" class="exclusivo1" oninput="verificarInput()">
-            </div>
-
-            <div class="opcao-neutro">
-                <input type="radio" name="neutroE" value="0" class="exclusivo1" oninput="verificarInput()">
-                <span class="span-neutro">Neutro</span>
-
-                <input type="radio" name="neutroI" value="0" class="exclusivo1" oninput="verificarInput()">
-            </div>
-
-            <div class="opcao-discordo">
-                <input type="radio" name="I" value="I" class="exclusivo1" oninput="verificarInput()">
-                <span>Discordo</span>
-            </div>
-        </form>
-        <hr>
-
-        <!-- 3 -->
-        <p>Você normalmente toma a iniciativa para puxar conversa com estranhos.</p>
-
-        <form>
-            <div class="opcao-concordo">
-                <span>Concordo</span>
-                <input type="radio" name="E" value="E" class="exclusivo2" oninput="verificarInput()">
-            </div>
-
-            <div class="opcao-neutro">
-                <input type="radio" name="neutroE" value="0" class="exclusivo2" oninput="verificarInput()">
-                <span class="span-neutro">Neutro</span>
-
-                <input type="radio" name="neutroI" value="0" class="exclusivo2" oninput="verificarInput()">
-            </div>
-
-            <div class="opcao-discordo">
-                <input type="radio" name="I" value="I" class="exclusivo2" oninput="verificarInput()">
-                <span>Discordo</span>
-            </div>
-        </form>
-        <hr>
-
-        <!-- 4 -->
-        <p>Quando algo te anima ou frustra, você tende a expressar isso facilmente para os outros.</p>
-
-        <form>
-            <div class="opcao-concordo">
-                <span>Concordo</span>
-                <input type="radio" name="E" value="E" class="exclusivo3" oninput="verificarInput()">
-            </div>
-
-            <div class="opcao-neutro">
-                <input type="radio" name="neutroE" value="0" class="exclusivo3" oninput="verificarInput()">
-                <span class="span-neutro">Neutro</span>
-
-                <input type="radio" name="neutroI" value="0" class="exclusivo3" oninput="verificarInput()">
-            </div>
-
-            <div class="opcao-discordo">
-                <input type="radio" name="I" value="I" class="exclusivo3" oninput="verificarInput()">
-                <span>Discordo</span>
-            </div>
-        </form>
-        <hr>
-
-        <!-- 5 -->
-        <p>Em um grupo de trabalho, você prefere colaborar ativamente em vez de focar em tarefas individuais.</p>
-
-        <form>
-            <div class="opcao-concordo">
-                <span>Concordo</span>
-                <input type="radio" name="E" value="E" class="exclusivo4" oninput="verificarInput()">
-            </div>
-
-            <div class="opcao-neutro">
-                <input type="radio" name="neutroE" value="0" class="exclusivo4" oninput="verificarInput()">
-                <span class="span-neutro">Neutro</span>
-
-                <input type="radio" name="neutroI" value="0" class="exclusivo4" oninput="verificarInput()">
-            </div>
-
-            <div class="opcao-discordo">
-                <input type="radio" name="I" value="I" class="exclusivo4" oninput="verificarInput()">
-                <span>Discordo</span>
-            </div>
-        </form>
-
-        <div>
-            <button class="botao-avancar" onclick="avancarTeste()">Avançar</button>
-        </div>
-    </div>
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-left">
-            <img src="Assets/crystalMindLogotipo.png" class="logo" />
-        </div>
-
-        <div>
-            <p class="footer-credit">© 2025 Crystal Mind</p>
-        </div>
-
-        <div class="footer-sobre">
-            <a href="#">Criador</a>
-        </div>
-    </footer>
-
-</body>
+    </body>
 
 </html>
 <script>
@@ -703,6 +706,45 @@
 
     var pergunta_atual = 0;
 
+    function cadastrarResultado() {
+        // Enviando o valor da nova input
+        fetch("/teste/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                fk_usuarioServer: sessionStorage.ID,
+                personalidadeServer: sessionStorage.RESULTADO_PREVIO,
+                porcentagemExtrovertidoServer: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
+                porcentagemIntrovertidoServer: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
+                porcentagemSensacaoServer: sessionStorage.PORCENTAGEM_SENSASAO_PREVIO,
+                porcentagemIntuitivoServer: sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO,
+                porcentagemThinkingServer: sessionStorage.PORCENTAGEM_THINKING_PREVIO,
+                porcentagemFeelingServer: sessionStorage.PORCENTAGEM_FEELING_PREVIO,
+                porcentagemJulgamentoServer: sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO,
+                porcentagemPercepcaoServer: sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+                console.log(listar);
+                if (resposta.ok) {
+                    limparFormulario();
+                    finalizarAguardar();
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+                finalizarAguardar();
+            });
+
+        return false;
+    }
 
     function verificarInput() {
 
