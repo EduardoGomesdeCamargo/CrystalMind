@@ -12,7 +12,7 @@
 
 <body>
 
-    <body onload=" cadastrarResultado()">
+    <body onload=" verificarResultados()">
 
         <!-- MENU -->
         <div class="header">
@@ -563,7 +563,7 @@
             <button class="botao-avancar" onclick="avancarTeste()">Avançar</button>
         </div>`,
 
-        `<!-- JULGAMENTO (J) X PERCEPCAO (P) -->
+        `<!-- JULGAMENTO/PLANEJADOR (J) X PERCEPCAO/DESBRAVADOR (P) -->
         <!-- 16 -->
         <p>Você costuma se sentir mais confortável com um plano bem definido do que com decisões de última hora.</p>
 
@@ -679,7 +679,7 @@
 
         <div>
             <button class="botao-avancar botao-voltar" onclick="retornarTeste()">Voltar</button>
-            <button class="botao-avancar" onclick="avancarTeste()">Avançar</button>
+            <button class="botao-avancar" onclick="avancarTeste()">Ver resultado</button>
         </div>`
     ]
 
@@ -706,45 +706,6 @@
 
     var pergunta_atual = 0;
 
-    function cadastrarResultado() {
-        // Enviando o valor da nova input
-        fetch("/teste/cadastrar", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-                // crie um atributo que recebe o valor recuperado aqui
-                // Agora vá para o arquivo routes/usuario.js
-                fk_usuarioServer: sessionStorage.ID,
-                personalidadeServer: sessionStorage.RESULTADO_PREVIO,
-                porcentagemExtrovertidoServer: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
-                porcentagemIntrovertidoServer: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
-                porcentagemSensacaoServer: sessionStorage.PORCENTAGEM_SENSASAO_PREVIO,
-                porcentagemIntuitivoServer: sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO,
-                porcentagemThinkingServer: sessionStorage.PORCENTAGEM_THINKING_PREVIO,
-                porcentagemFeelingServer: sessionStorage.PORCENTAGEM_FEELING_PREVIO,
-                porcentagemJulgamentoServer: sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO,
-                porcentagemPercepcaoServer: sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO
-            }),
-        })
-            .then(function (resposta) {
-                console.log("resposta: ", resposta);
-                console.log(listar);
-                if (resposta.ok) {
-                    limparFormulario();
-                    finalizarAguardar();
-                } else {
-                    throw "Houve um erro ao tentar realizar o cadastro!";
-                }
-            })
-            .catch(function (resposta) {
-                console.log(`#ERRO: ${resposta}`);
-                finalizarAguardar();
-            });
-
-        return false;
-    }
 
     function verificarInput() {
 
@@ -910,55 +871,182 @@
 
         id_perguntas.innerHTML = listaPerguntas[pergunta_atual];
     }
-    var personalidade = 1;
     function mostrarResultado() {
+        var personalidade = '';
 
         // CALCULANDO DICOTOMIA E/I
-        var totalExtrovertido = extrovertido.length + (neutroExtrovertido.length) / 2;
-        var totalIntrovertido = introvertido.length + (neutroIntrovertido.length) / 2;
-        if (totalExtrovertido > totalIntrovertido) {
+        const totalEI = extrovertido.length + introvertido.length + neutroExtrovertido.length * 0.51 + neutroIntrovertido.length * 0.51;
+
+        var porcentagemExtrovertido = Math.floor((extrovertido.length + (neutroExtrovertido.length * 0.51)) * 100 / totalEI);
+        var porcentagemIntrovertido = 100 - porcentagemExtrovertido;
+        if (porcentagemExtrovertido > porcentagemIntrovertido) {
             personalidade = 'E';
         } else {
             personalidade = 'I';
         }
 
         // CALCULANDO DICOTOMIA S/N
-        var totalSensacao = sensacao.length + (neutroSensacao.length / 2);
-        var totalIntuitivo = intuitivo.length + (neutroIntuitivo.length / 2);
-        if (totalSensacao > totalIntuitivo) {
+        const totalSN = sensacao.length + intuitivo.length + neutroSensacao.length * 0.51 + neutroIntuitivo.length * 0.51;
+
+        var porcentagemSensacao = Math.floor((sensacao.length + (neutroSensacao.length * 0.51)) * 100 / totalSN);
+        var porcentagemIntuitivo = 100 - porcentagemSensacao;
+        if (porcentagemSensacao > porcentagemIntuitivo) {
             personalidade += 'S';
         } else {
             personalidade += 'N';
         }
         // CALCULANDO DICOTOMIA T/F
-        var totalThinking = thinking.length + (neutroThinking.length / 2);
-        var totalFeeling = feeling.length + (neutroFeeling.length / 2);
-        if (totalThinking > totalFeeling) {
+        const totalTF = thinking.length + feeling.length + neutroThinking.length * 0.51 + neutroFeeling.length * 0.51;
+
+        var porcentagemThinking = Math.floor((thinking.length + (neutroThinking.length * 0.51)) * 100 / totalTF);
+        var porcentagemFeeling = 100 - porcentagemThinking;
+        if (porcentagemThinking > porcentagemFeeling) {
             personalidade += 'T';
         } else {
             personalidade += 'F';
         }
 
         // CALCULANDO DICOTOMIA J/P
-        var totalJulgamento = julgamento.length + (neutroJulgamento.length / 2);
-        var totalPercepcao = percepcao.length + (neutroPercepcao.length / 2);
-        if (totalJulgamento > totalPercepcao) {
+        const totalJP = julgamento.length + percepcao.length + neutroJulgamento.length * 0.51 + neutroPercepcao.length * 0.51;
+
+        var porcentagemJulgamento = Math.floor((julgamento.length + (neutroJulgamento.length * 0.51)) * 100 / totalJP);
+        var porcentagemPercepcao = 100 - porcentagemJulgamento;
+        if (porcentagemJulgamento > porcentagemPercepcao) {
             personalidade += 'J';
         } else {
             personalidade += 'P';
         }
 
-        alert(personalidade);
-        console.log(sensacao);
-        console.log(intuitivo);
+        sessionStorage.RESULTADO_PREVIO = personalidade;
 
-        console.log(extrovertido);
-        console.log(introvertido);
+        sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO = porcentagemExtrovertido;
+        sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO = porcentagemIntrovertido;
 
-        console.log(thinking);
-        console.log(feeling);
+        sessionStorage.PORCENTAGEM_SENSASAO_PREVIO = porcentagemSensacao;
+        sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO = porcentagemIntuitivo;
 
-        console.log(julgamento);
-        console.log(percepcao);
+        sessionStorage.PORCENTAGEM_THINKING_PREVIO = porcentagemThinking;
+        sessionStorage.PORCENTAGEM_FEELING_PREVIO = porcentagemFeeling;
+
+        sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO = porcentagemJulgamento;
+        sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO = porcentagemPercepcao;
+
+        atualizarResultado();
+    }
+
+    function atualizarResultado() {
+
+        fetch(`/teste/atualizarResultado/`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                descricao: textarea_descricao.value
+            })
+        }).then(function (resposta) {
+
+            if (resposta.ok) {
+                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
+                window.location = "/dashboard/mural.html"
+            } else if (resposta.status == 404) {
+                window.alert("Deu 404!");
+            } else {
+                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
+            }
+        }).catch(function (resposta) {
+            console.log(`#ERRO: ${resposta}`);
+        });
+
+        setTimeout(() => {
+            window.location = "Resultados.html";
+        }, "1000");
+    }
+
+    function verificarResultados() {
+        let validacaoTestePrevio = sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO;
+        console.log(`validacao de teste previo: ${validacaoTestePrevio}`)
+        if (validacaoTestePrevio != undefined) {
+
+            fetch(`/teste/verificar/${sessionStorage.ID}`, { cache: 'no-store' }).then(function (resultado) {
+                if (resultado.status == 200) {
+
+                    resultado.json().then(res => {
+                        console.log(res);
+                        console.log(JSON.stringify(res));
+                        console.log("Já há valores inseridos");
+                    });
+                } else if (resultado.status == 204) {
+                    console.log("Inserindo valores do teste de personalidade prévio no Banco de Dados");
+                    cadastrarResultado();
+
+                } else {
+                    console.error('Nenhum dado encontrado ou erro na API');
+                }
+            }).catch(function (error) {
+                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+                });
+        } else{
+            console.log('esta indefinciod!!')
+        }
+    }
+
+    function cadastrarResultado() {
+        // Enviando o valor da nova input
+        fetch("/teste/cadastrar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                fk_usuarioServer: sessionStorage.ID,
+                personalidadeServer: sessionStorage.RESULTADO_PREVIO,
+                porcentagemExtrovertidoServer: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
+                porcentagemIntrovertidoServer: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
+                porcentagemSensacaoServer: sessionStorage.PORCENTAGEM_SENSASAO_PREVIO,
+                porcentagemIntuitivoServer: sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO,
+                porcentagemThinkingServer: sessionStorage.PORCENTAGEM_THINKING_PREVIO,
+                porcentagemFeelingServer: sessionStorage.PORCENTAGEM_FEELING_PREVIO,
+                porcentagemJulgamentoServer: sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO,
+                porcentagemPercepcaoServer: sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+                if (resposta.ok) {
+                    console.log(resposta);
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
+            })
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
+
+        setTimeout(() => {
+            recuperarIdResultado();
+        }, "2000");
+        return false;
+    }
+
+    function recuperarIdResultado() {
+        fetch(`/teste/listar/${sessionStorage.ID}`, { cache: 'no-store' }).then(function (resultado) {
+            if (resultado.ok) {
+
+                resultado.json().then(res => {
+                    console.log(res);
+                    console.log(JSON.stringify(res));
+                    sessionStorage.ID_RESULTADO = res[0].id_resultado
+                });
+                console.log(sessionStorage.ID_RESULTADO)
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
     }
 </script>

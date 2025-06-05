@@ -8,9 +8,18 @@ router.post("/cadastrar", function (req, res) {
     testeController.cadastrar(req, res);
 });
 
-router.get("/listar/:email", function (req, res) {
+router.get("/listar/:id_usuario", function (req, res) {
     // função a ser criada quando acessar /teste/listar
     testeController.listar(req, res);
 })
+
+router.get("/verificar/:id_usuario", function (req, res) {
+    // função a ser criada quando acessar /teste/listar
+    testeController.verificar(req, res);
+})
+
+router.put("/atualizarResultado/:idAviso", function (req, res) {
+    testeController.atualizarResultado(req, res);
+});
 
 module.exports = router;
