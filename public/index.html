@@ -991,7 +991,58 @@
             personalidade += 'P';
         }
 
+        // PASSANDO AS FOREING KEY PARA AS PERSONALIDADES
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        if (personalidade == 'ISTJ') {
+            let fk_personalidade = 1;
+
+        } else if (personalidade == 'ISFJ') {
+            let fk_personalidade = 2;
+        } else if (personalidade == 'INFJ') {
+            let fk_personalidade = 3;
+        } else if (personalidade == 'INTJ') {
+            let fk_personalidade = 4;
+        } else if (personalidade == 'ISTP') {
+            let fk_personalidade = 5;
+        } else if (personalidade == 'ISFP') {
+            let fk_personalidade = 6;
+        } else if (personalidade == 'INFP') {
+            let fk_personalidade = 7;
+        } else if (personalidade == 'INTP') {
+            let fk_personalidade = 8;
+        } else if (personalidade == 'ESTP') {
+            let fk_personalidade = 9;
+        } else if (personalidade == 'ESFP') {
+            let fk_personalidade = 10
+        } else if (personalidade == 'ENFP') {
+            let fk_personalidade = 11
+        } else if (personalidade == 'ENTP') {
+            let fk_personalidade = 12
+        } else if (personalidade == 'ESTJ') {
+            let fk_personalidade = 13
+        } else if (personalidade == 'ESFJ') {
+            let fk_personalidade = 14
+        } else if (personalidade == 'ENFJ') {
+            let fk_personalidade = 15
+        } else if (personalidade == 'ENTJ') {
+            let fk_personalidade = 16;
+        }
         sessionStorage.RESULTADO_PREVIO = personalidade;
+        sessionStorage.FK_PERSONALIDADE = fk_personalidade;
 
         sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO = porcentagemExtrovertido;
         sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO = porcentagemIntrovertido;
