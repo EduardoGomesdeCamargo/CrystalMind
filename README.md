@@ -1,47 +1,40 @@
-<<<<<<< index
-<<<<<<< commits_dicas
-# Crystal Mind
+# 💎 Teste de Personalidade das Gems
 
-## Padrão de Commits — Conventional Commits
+Este projeto é um teste de personalidade interativo inspirado na teoria MBTI, com um toque criativo do universo de *Steven Universe*.
 
-| Tipo        | Descrição                                                                 | Exemplo                                                   |
-|-------------|---------------------------------------------------------------------------|-----------------------------------------------------------|
-| feat      | Adição de nova funcionalidade ao projeto                                  | feat(mapa): adicionar botão de localização atual        |
-| fix       | Correção de bugs ou falhas no sistema                                     | fix(login): corrigir erro ao autenticar com senha errada|
-| docs      | Alterações apenas na documentação                                          | docs(readme): atualizar instruções de instalação        |
-| style     | Ajustes de estilo, formatação, indentação — sem alteração de código real  | style(home): remover espaços desnecessários             |
-| refactor  | Refatoração de código, sem mudar comportamento nem corrigir bug           | refactor(api): melhorar legibilidade da função getData  |
-| perf      | Melhorias de performance                                                  | perf(lista): otimizar loop de renderização              |
-| test      | Adição ou modificação de testes                                           | test(button): criar teste unitário para clique          |
-| chore     | Tarefas diversas que não afetam o código-fonte nem testes                 | chore(deps): atualizar pacotes do projeto               |
-| build     | Alterações que afetam o processo de build ou dependências externas        | build: configurar Webpack para produção                 |
-| ci        | Configuração ou modificação de integração contínua                        | ci: adicionar script de build no GitHub Actions         |
-| revert    | Reversão de um commit anterior                                            | revert: feat(auth): adicionar login social              |
+## 🧠 Sobre o Teste
 
-### Dica:
-Use no formato:
-=======
-=======
-<<<<<<< commits_dicas
-# Crystal Mind
+O usuário responde a uma série de perguntas baseadas em situações do dia a dia. Cada resposta contribui para identificar seu tipo de personalidade MBTI (como INFJ, ESTP, etc), usando as quatro dicotomias clássicas:
 
-## Padrão de Commits — Conventional Commits
+- **Extroversão (E) x Introversão (I)**
+- **Sensação (S) x Intuição (N)**
+- **Pensamento (T) x Sentimento (F)**
+- **Julgamento (J) x Percepção (P)**
 
-| Tipo        | Descrição                                                                 | Exemplo                                                   |
-|-------------|---------------------------------------------------------------------------|-----------------------------------------------------------|
-| feat      | Adição de nova funcionalidade ao projeto                                  | feat(mapa): adicionar botão de localização atual        |
-| fix       | Correção de bugs ou falhas no sistema                                     | fix(login): corrigir erro ao autenticar com senha errada|
-| docs      | Alterações apenas na documentação                                          | docs(readme): atualizar instruções de instalação        |
-| style     | Ajustes de estilo, formatação, indentação — sem alteração de código real  | style(home): remover espaços desnecessários             |
-| refactor  | Refatoração de código, sem mudar comportamento nem corrigir bug           | refactor(api): melhorar legibilidade da função getData  |
-| perf      | Melhorias de performance                                                  | perf(lista): otimizar loop de renderização              |
-| test      | Adição ou modificação de testes                                           | test(button): criar teste unitário para clique          |
-| chore     | Tarefas diversas que não afetam o código-fonte nem testes                 | chore(deps): atualizar pacotes do projeto               |
-| build     | Alterações que afetam o processo de build ou dependências externas        | build: configurar Webpack para produção                 |
-| ci        | Configuração ou modificação de integração contínua                        | ci: adicionar script de build no GitHub Actions         |
-| revert    | Reversão de um commit anterior                                            | revert: feat(auth): adicionar login social              |
+Ao final do teste, o resultado é um tipo de personalidade composto por quatro letras (ex: INFP).
 
-### Dica:
-Use no formato:
-=======
->>>>>>> main
+## 💎 Conexão com Pedras e Gems
+
+Cada tipo MBTI é associado a uma **pedra preciosa ou gema**, refletindo suas principais características. Para tornar a experiência mais divertida e temática, cada pedra também está conectada a uma **personagem Gem do desenho Steven Universe**, que representa traços similares de personalidade.
+
+Exemplo:
+- **INFP** → Ametista → *Amethyst*
+- **ENTJ** → Granada → *Garnet*
+
+## 🎯 Objetivo
+
+O projeto busca oferecer:
+- Um teste acessível e divertido
+- Uma ponte entre psicologia e cultura pop
+- Uma interface amigável com resultados visuais e significativos
+
+## 🚧 Em desenvolvimento
+
+Funcionalidades futuras incluem:
+- Resultados personalizados com imagens das Gems
+- Análise gráfica das tendências do usuário
+- Compatibilidade com mobile
+
+---
+
+Feito com 💜 por fãs de psicologia e Steven Universe.

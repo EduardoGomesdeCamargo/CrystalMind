@@ -126,9 +126,8 @@
         var senhaVar = senha_input.value;
 
         if (emailVar == "" || senhaVar == "") {
-            cardErro.style.display = "block"
-            mensagem_erro.innerHTML = "Preencha todos os campos!";
-            finalizarAguardar();
+            let texto = 'Preencha todos os campos para prosseguir!';
+            finalizarAguardar(texto);
             return false;
         }
         else {

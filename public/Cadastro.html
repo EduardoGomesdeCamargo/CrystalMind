@@ -248,7 +248,7 @@
               // cadastrarResultado(emailVar);
             } else {
               resposta.json().then(function (json) {
-              alert(json.mensagem);
+              finalizarAguardar(json.mensagem);
             })
               throw "Houve um erro ao tentar realizar o cadastro!";
             }

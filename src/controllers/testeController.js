@@ -1,6 +1,7 @@
 const { response } = require("express");
 var testeModel = require("../models/testeModel");
 
+// RESGATANDO O ID DA TABLE RESULTADO
 function listar(req, res) {
 
     var id_usuario = req.params.id_usuario;
@@ -143,7 +144,7 @@ function atualizarResultado(req, res) {
     }
 
     // INSERINDO RESULTADO
-    testeModel.atualizar(fk_usuario, personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao)
+    testeModel.atualizarResultado(fk_usuario, personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao)
         .then(function (resposta) {
             res.status(200).send("Teste criado com sucesso");
         }).catch(function (erro) {

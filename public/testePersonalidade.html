@@ -963,10 +963,13 @@
         }, "1000");
     }
 
+    // Verificando se o usuário fez ou não o teste prévio e se deve ou não inserir o resultados do teste prévio no banco de dados 
     function verificarResultados() {
         let validacaoTestePrevio = sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO;
-        console.log(`validacao de teste previo: ${validacaoTestePrevio}`)
-        if (validacaoTestePrevio != undefined) {
+        console.log(`Validação de teste previo (Se estiver undefined é porque o usuário não fez o teste prévio; caso contrário, ele fez o teste prévio): ${validacaoTestePrevio}`);
+
+        if (validacaoTestePrevio != undefined && validacaoTestePrevio != 'undefined') {
+            console.log('Teste de personalidade prévio foi feito. Agora será verificado se já tem informação no BD resultados');
 
             fetch(`/teste/verificar/${sessionStorage.ID}`, { cache: 'no-store' }).then(function (resultado) {
                 if (resultado.status == 200) {
@@ -974,20 +977,29 @@
                     resultado.json().then(res => {
                         console.log(res);
                         console.log(JSON.stringify(res));
-                        console.log("Já há valores inseridos");
+                        console.log("Já há valores inseridos na tabela resultados. Não fará uma nova inserção nessa tabela!");
+                        sessionStorage.RESULTADO_PREVIO = undefined;
+                        sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO = undefined;
+                        sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO = undefined;
+                        sessionStorage.PORCENTAGEM_SENSASAO_PREVIO = undefined;
+                        sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO = undefined;
+                        sessionStorage.PORCENTAGEM_THINKING_PREVIO = undefined;
+                        sessionStorage.PORCENTAGEM_FEELING_PREVIO = undefined;
+                        sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO = undefined;
+                        sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO = undefined;
                     });
                 } else if (resultado.status == 204) {
-                    console.log("Inserindo valores do teste de personalidade prévio no Banco de Dados");
+                    console.log("Inserindo valores do teste de personalidade prévio no Banco de Dados, a tabela resultados está vazia!");
                     cadastrarResultado();
 
                 } else {
                     console.error('Nenhum dado encontrado ou erro na API');
                 }
             }).catch(function (error) {
-                    console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
-                });
-        } else{
-            console.log('esta indefinciod!!')
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+        } else {
+            console.log('Está undefined pois o teste prévio não foi feito!! Não será feita a inserção.')
         }
     }
 
@@ -1017,6 +1029,16 @@
                 console.log("resposta: ", resposta);
                 if (resposta.ok) {
                     console.log(resposta);
+                    console.log("Inserção dos dados do teste prévio executada na tabela resultados com sucesso");
+                    sessionStorage.RESULTADO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_SENSASAO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_THINKING_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_FEELING_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO = undefined;
                 } else {
                     throw "Houve um erro ao tentar realizar o cadastro!";
                 }
@@ -1027,11 +1049,12 @@
 
         setTimeout(() => {
             recuperarIdResultado();
-        }, "2000");
+        }, "1000");
         return false;
     }
 
     function recuperarIdResultado() {
+        console.log('recuperando o id da tabela resultados do usuário atual')
         fetch(`/teste/listar/${sessionStorage.ID}`, { cache: 'no-store' }).then(function (resultado) {
             if (resultado.ok) {
 
