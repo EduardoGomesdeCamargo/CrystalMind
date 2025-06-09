@@ -49,6 +49,7 @@ function cadastrar(req, res) {
     // Criando variáveis que irão recuperar os valores do arquivo index.html/testePersonalidade.html
 
     var fk_usuario = req.body.fk_usuarioServer;
+    var fk_personalidade = req.body.fk_personalidade;
     var personalidade = req.body.personalidadeServer;
     var porcentagemExtrovertido = req.body.porcentagemExtrovertidoServer;
     var porcentagemIntrovertido = req.body.porcentagemIntrovertidoServer;
@@ -60,9 +61,7 @@ function cadastrar(req, res) {
     var porcentagemPercepcao = req.body.porcentagemPercepcaoServer;
 
     // Faça as validações dos valores
-    if (personalidade == undefined) {
-        res.status(400).send("Sua personalidade está undefined!");
-    } else if (porcentagemExtrovertido == undefined) {
+    if (porcentagemExtrovertido == undefined) {
         res.status(400).send("Sua porcentagemExtrovertido está undefined!");
     } else if (porcentagemIntrovertido == undefined) {
         res.status(400).send("Sua porcentagemIntrovertido está undefined!");
@@ -80,6 +79,8 @@ function cadastrar(req, res) {
         res.status(400).send("Sua porcentagemPercepcao está undefined!");
     } else if (fk_usuario == undefined) {
         res.status(400).send("Seu ID está undefined!");
+    } else if (fk_personalidade == undefined) {
+        res.status(400).send("Seu fk_personalidade está undefined!");
     }
 
     // COLETANDO ID DO USUARIO
@@ -97,7 +98,7 @@ function cadastrar(req, res) {
     // })
 
     // INSERINDO RESULTADO
-    testeModel.cadastrar(fk_usuario, personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao)
+    testeModel.cadastrar(fk_usuario, fk_personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao)
         .then(function (resposta) {
             res.json(resposta);
             res.status(200).send("Teste criado com sucesso");

@@ -979,6 +979,7 @@
                         console.log(JSON.stringify(res));
                         console.log("Já há valores inseridos na tabela resultados. Não fará uma nova inserção nessa tabela!");
                         sessionStorage.RESULTADO_PREVIO = undefined;
+                        sessionStorage.FK_PERSONALIDADE = undefined;
                         sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO = undefined;
                         sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO = undefined;
                         sessionStorage.PORCENTAGEM_SENSASAO_PREVIO = undefined;
@@ -1014,7 +1015,7 @@
                 // crie um atributo que recebe o valor recuperado aqui
                 // Agora vá para o arquivo routes/usuario.js
                 fk_usuarioServer: sessionStorage.ID,
-                personalidadeServer: sessionStorage.RESULTADO_PREVIO,
+                fk_personalidade: sessionStorage.FK_PERSONALIDADE,
                 porcentagemExtrovertidoServer: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
                 porcentagemIntrovertidoServer: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
                 porcentagemSensacaoServer: sessionStorage.PORCENTAGEM_SENSASAO_PREVIO,

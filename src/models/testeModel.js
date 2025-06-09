@@ -17,9 +17,9 @@ function verificar(id_usuario) {
     return database.executar(instrucao);
 }
 
-function cadastrar(fk_usuario, personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao) {
+function cadastrar(fk_usuario, fk_personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao) {
     var instrucao = `
-            INSERT INTO resultado (fk_usuario, personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao) VALUES (${fk_usuario}, '${personalidade}', '${porcentagemExtrovertido}', '${porcentagemIntrovertido}', '${porcentagemSensacao}', '${porcentagemIntuitivo}', '${porcentagemThinking}', '${porcentagemFeeling}', '${porcentagemJulgamento}', '${porcentagemPercepcao}');
+            INSERT INTO resultado (fk_usuario, fk_personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao) VALUES (${fk_usuario}, '${fk_personalidade}', '${porcentagemExtrovertido}', '${porcentagemIntrovertido}', '${porcentagemSensacao}', '${porcentagemIntuitivo}', '${porcentagemThinking}', '${porcentagemFeeling}', '${porcentagemJulgamento}', '${porcentagemPercepcao}');
             `;
 
     console.log("Executando a instrução SQL: \n" + instrucao);

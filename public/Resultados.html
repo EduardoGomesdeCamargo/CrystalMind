@@ -11,89 +11,101 @@
 </head>
 
 <body>
-    <!-- MENU -->
-    <div class="header">
-        <div class="logo-position">
-            <div>
-                <a href="index.html" class="logo">
-                    <img src="Assets/crystalMindLogotipo.png" alt="Logo" />
-                </a>
+
+    <body onload="resgatarPersonalidade()">
+
+        <!-- MENU -->
+        <div class="header">
+            <div class="logo-position">
+                <div>
+                    <a href="index.html" class="logo">
+                        <img src="Assets/crystalMindLogotipo.png" alt="Logo" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="lista">
+                <div>
+                    <ul class="nav-list">
+                        <li><a href="index.html">Início</a></li>
+                        <li><a href="index.html">Teste de Personalidade</a></li>
+                        <li class="pagina-atual"><a href="Resultados.html">Seus resultados</a></li>
+                        <li><a href="#">Criador</a></li>
+                        <span>|</span>
+                        <li><a href="Login.html">Login</a></li>
+                        <li><a href="Cadastro.html">Cadastro</a></li>
+                </div>
+                </ul>
             </div>
         </div>
 
-        <div class="lista">
-            <div>
-                <ul class="nav-list">
-                    <li><a href="index.html">Início</a></li>
-                    <li><a href="index.html">Teste de Personalidade</a></li>
-                    <li class="pagina-atual"><a href="Resultados.html">Seus resultados</a></li>
-                    <li><a href="#">Criador</a></li>
-                    <span>|</span>
-                    <li><a href="Login.html">Login</a></li>
-                    <li><a href="Cadastro.html">Cadastro</a></li>
+        <!-- BANNER INICIAL GEM -->
+        <div class="banner-gem">
+            <img src="Assets/Garnet.webp" alt="" class="garnetImg">
+            <img src="Assets/garnetGlasses.png" alt="" class="garnetGlassesImg">
+            <div class="banner-gem-texto">
+                <p>Sua Gem é:</p>
+                <h1>GARNET</h1>
+                <h3 id="h3_personalidade"></h3>
             </div>
-            </ul>
-        </div>
-    </div>
-
-    <!-- BANNER INICIAL GEM -->
-    <div class="banner-gem">
-        <img src="Assets/Garnet.webp" alt="" class="garnetImg">
-        <img src="Assets/garnetGlasses.png" alt="" class="garnetGlassesImg">
-        <div class="banner-gem-texto">
-            <p>Sua Gem é:</p>
-            <h1>GARNET</h1>
-            <h3 id="h3_personalidade"></h3>
-        </div>
-    </div>
-
-    <!-- CONTEUDO DA PERSONALIDADE -->
-
-    <div class="resultado-conteudo">
-        <h1>Características da personalidade</h1>
-        <p>
-            Sendo um ENTP (Inovador), você é uma força intelectual vibrante e está sempre pronto para desafiar ideias e
-            superar limites. Seu raciocínio ágil e espírito audacioso fazem de você um provocador nato, que adora o
-            desafio mental de uma boa discussão. Você encara o mundo como um carrossel de possibilidades, em que cada
-            conversa é uma oportunidade de explorar novos conceitos e desafiar o status quo.
-        </p>
-        <p class="conteudo-cadastrar"><a href="Cadastro.html">Crie uma conta</a> para mais informações sobre sua personalidade.</p>
-    </div>
-    <hr>
-    <!-- CONTEUDO DA GEM -->
-    <div class="resultado-conteudo">
-        <h1>Características da Garnet</h1>
-        <p>
-            Sua mente inovadora está sempre fervilhando, estabelecendo relações que nem todos conseguem perceber. Você
-            tem uma capacidade incrível de ver potencial onde os outros encontram problemas, recebendo os desafios com
-            entusiasmo e criatividade. Isso faz de você um elemento valioso em sessões de brainstorming e grupos de
-            reflexão, onde seu pensamento original pode levar a soluções inovadoras.
-        </p>
-        <p class="conteudo-cadastrar"><a href="Cadastro.html">Crie uma conta</a> para mais informações sobre Garnet.</p>
-    </div>
-
-    <!-- INDEX QUARTA PARTE TESTE PERSONALIDADE-->
-
-
-    <!-- FOOTER -->
-    <footer class="footer">
-        <div class="footer-left">
-            <img src="Assets/crystalMindLogotipo.png" class="logo" />
         </div>
 
-        <div>
-            <p class="footer-credit">© 2025 Crystal Mind</p>
+        <!-- CONTEUDO DA PERSONALIDADE -->
+
+        <div class="resultado-conteudo">
+            <h1>Características da personalidade</h1>
+            <p>
+                Sendo um ENTP (Inovador), você é uma força intelectual vibrante e está sempre pronto para desafiar
+                ideias e
+                superar limites. Seu raciocínio ágil e espírito audacioso fazem de você um provocador nato, que adora o
+                desafio mental de uma boa discussão. Você encara o mundo como um carrossel de possibilidades, em que
+                cada
+                conversa é uma oportunidade de explorar novos conceitos e desafiar o status quo.
+            </p>
+            <p class="conteudo-cadastrar"><a href="Cadastro.html">Crie uma conta</a> para mais informações sobre sua
+                personalidade.</p>
+        </div>
+        <hr>
+        <!-- CONTEUDO DA GEM -->
+        <div class="resultado-conteudo">
+            <h1>Características da Garnet</h1>
+            <p>
+                Sua mente inovadora está sempre fervilhando, estabelecendo relações que nem todos conseguem perceber.
+                Você
+                tem uma capacidade incrível de ver potencial onde os outros encontram problemas, recebendo os desafios
+                com
+                entusiasmo e criatividade. Isso faz de você um elemento valioso em sessões de brainstorming e grupos de
+                reflexão, onde seu pensamento original pode levar a soluções inovadoras.
+            </p>
+            <p class="conteudo-cadastrar"><a href="Cadastro.html">Crie uma conta</a> para mais informações sobre Garnet.
+            </p>
         </div>
 
-        <div class="footer-sobre">
-            <a href="#">Criador</a>
-        </div>
-    </footer>
+        <!-- INDEX QUARTA PARTE TESTE PERSONALIDADE-->
 
-</body>
+
+        <!-- FOOTER -->
+        <footer class="footer">
+            <div class="footer-left">
+                <img src="Assets/crystalMindLogotipo.png" class="logo" />
+            </div>
+
+            <div>
+                <p class="footer-credit">© 2025 Crystal Mind</p>
+            </div>
+
+            <div class="footer-sobre">
+                <a href="#">Criador</a>
+            </div>
+        </footer>
+
+    </body>
 
 </html>
 <script>
     h3_personalidade.innerHTML = `Personalidade: ${sessionStorage.RESULTADO_PREVIO}`;
-  
+
+    function resgatarPersonalidade() {
+        
+    }
 </script>

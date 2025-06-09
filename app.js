@@ -23,6 +23,7 @@ var aquariosRouter = require("./src/routes/aquarios");
 var empresasRouter = require("./src/routes/empresas");
 
 var testeRouter = require("./src/routes/teste");
+var personalidadeRouter = require("./src/routes/personalidade");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -38,6 +39,7 @@ app.use("/aquarios", aquariosRouter);
 app.use("/empresas", empresasRouter);
 
 app.use("/teste", testeRouter);
+app.use("/personalidade", personalidadeRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`
