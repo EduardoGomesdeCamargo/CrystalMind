@@ -40,47 +40,24 @@
         </div>
 
         <!-- BANNER INICIAL GEM -->
-        <div class="banner-gem">
-            <img src="Assets/Garnet.webp" alt="" class="garnetImg">
-            <img src="Assets/garnetGlasses.png" alt="" class="garnetGlassesImg">
+        <div id="div_banner" class="banner-gem">
+            <img id="img1" src="" alt="" class="img1">
+            <img id="img2" src="" alt="" class="img2">
             <div class="banner-gem-texto">
                 <p>Sua Gem é:</p>
-                <h1>GARNET</h1>
+                <h1 id="h1_Gem"></h1>
                 <h3 id="h3_personalidade"></h3>
+                <p id="p_descricaoPersonalidade"></p>
             </div>
         </div>
-
+<!-- Assets/lapisLazuli/Lapis_Lazuli_trainer.webp -->
         <!-- CONTEUDO DA PERSONALIDADE -->
 
         <div class="resultado-conteudo">
-            <h1>Características da personalidade</h1>
-            <p>
-                Sendo um ENTP (Inovador), você é uma força intelectual vibrante e está sempre pronto para desafiar
-                ideias e
-                superar limites. Seu raciocínio ágil e espírito audacioso fazem de você um provocador nato, que adora o
-                desafio mental de uma boa discussão. Você encara o mundo como um carrossel de possibilidades, em que
-                cada
-                conversa é uma oportunidade de explorar novos conceitos e desafiar o status quo.
-            </p>
-            <p class="conteudo-cadastrar"><a href="Cadastro.html">Crie uma conta</a> para mais informações sobre sua
-                personalidade.</p>
+            <p class="conteudo-cadastrar"><a href="Cadastro.html">Crie uma conta</a> para saber de mais detalhes sobre a
+                sua personalidade e sobre sua
+                Gem. Além disso, você poderá ter acesso a uma Dashboard dinâmica.</p>
         </div>
-        <hr>
-        <!-- CONTEUDO DA GEM -->
-        <div class="resultado-conteudo">
-            <h1>Características da Garnet</h1>
-            <p>
-                Sua mente inovadora está sempre fervilhando, estabelecendo relações que nem todos conseguem perceber.
-                Você
-                tem uma capacidade incrível de ver potencial onde os outros encontram problemas, recebendo os desafios
-                com
-                entusiasmo e criatividade. Isso faz de você um elemento valioso em sessões de brainstorming e grupos de
-                reflexão, onde seu pensamento original pode levar a soluções inovadoras.
-            </p>
-            <p class="conteudo-cadastrar"><a href="Cadastro.html">Crie uma conta</a> para mais informações sobre Garnet.
-            </p>
-        </div>
-
         <!-- INDEX QUARTA PARTE TESTE PERSONALIDADE-->
 
 
@@ -103,9 +80,87 @@
 
 </html>
 <script>
-    h3_personalidade.innerHTML = `Personalidade: ${sessionStorage.RESULTADO_PREVIO}`;
-
     function resgatarPersonalidade() {
-        
+        console.log('recuperando os campos da tabela personalidade')
+        fetch(`/personalidade/listar/${sessionStorage.FK_PERSONALIDADE}`, { cache: 'no-store' }).then(function (resultado) {
+            if (resultado.ok) {
+
+                resultado.json().then(res => {
+                    console.log(res);
+                    console.log(JSON.stringify(res));
+                    console.log("select da tabela personalidade executado com sucesso.")
+                    sessionStorage.ID_PERSONALIDADE = res[0].id_personalidade
+                    sessionStorage.PERSONALIDADE = res[0].personalidade
+                    sessionStorage.PALAVRA_CHAVE = res[0].palavra_chave
+                    sessionStorage.SINTESE = res[0].sintese
+                    sessionStorage.DESCRICAO = res[0].descricao
+                    sessionStorage.ID_GEM = res[0].id_gem
+                    sessionStorage.NOME_GEM = res[0].nome
+                    sessionStorage.SINTESE_GEM = res[0].sintese_gem
+                    sessionStorage.DESCRICAO_GEM = res[0].descricao_gem
+                });
+                console.log('Dados recuperados da tabela personalidade')
+                mostrarResultado();
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function mostrarResultado() {
+        h1_Gem.innerHTML = sessionStorage.NOME_GEM.toUpperCase();
+
+        h3_personalidade.innerHTML = `Personalidade: ${sessionStorage.PERSONALIDADE} - ${sessionStorage.PALAVRA_CHAVE}`;
+
+        p_descricaoPersonalidade.innerHTML = sessionStorage.SINTESE;
+
+        if (sessionStorage.NOME_GEM == "Garnet") {
+            div_banner.style.backgroundColor = "#b02359";
+            img1.src = "Assets/Garnet/Garnet.webp";
+            img2.src = "Assets/Garnet/garnetGlasses.png";
+            h3_personalidade.style.color = "pink";
+
+        } else if (sessionStorage.NOME_GEM == "Lápis Lazúli") {
+            div_banner.style.backgroundColor = "#234db0";
+            img1.src = "Assets/lapisLazuli/Lapis_Lazuli.webp";
+            img2.src = "Assets/lapisLazuli/Lapis_Lazuli_trainer.webp";
+            img2.style.marginLeft = "65%";
+            img2.style.height = "280px";
+            h3_personalidade.style.color = "rgb(146, 193, 249)";
+        } else if (sessionStorage.NOME_GEM == "Diamante Amarelo") {
+            div_banner.style.backgroundColor = "rgb(205, 205, 3)";
+            img1.src = "Assets/diamanteAmarelo/diamanteAmarelo.webp";
+            img2.src = "Assets/diamanteAmarelo/diamanteAmareloPower.webp";
+            img1.style.marginLeft = "52%";
+            img2.style.marginLeft = "65%";
+            img2.style.height = "370px";
+            img2.style.marginTop = "70px";
+            h3_personalidade.style.color = "rgb(255, 255, 146)";
+        } else if (sessionStorage.NOME_GEM == "Pérola") {
+            div_banner.style.backgroundColor = "rgb(16, 214, 187)";
+            img1.src = "Assets/perola/perola.webp";
+            img2.src = "Assets/perola/oldPearl.png";
+            img2.style.marginLeft = "62%";
+            img2.style.marginTop = "110px";
+            img2.style.height = "320px"
+            h3_personalidade.style.color = "rgb(255, 212, 188)";
+        } else if (sessionStorage.NOME_GEM == "Rose Quartz") {
+            div_banner.style.backgroundColor = "rgb(223, 96, 164)";
+            img1.src = "Assets/roseQuartz/Rose_QuartzWeaponized.webp";
+            img2.src = "Assets/roseQuartz/Rose_Quartz_Floating.webp";
+            img2.style.marginLeft = "65%";
+            img2.style.height = "350px";
+            img2.style.marginTop = "90px";
+            h3_personalidade.style.color = "#f3b5fc";
+        }  else if (sessionStorage.NOME_GEM == "Diamante Branco") {
+            div_banner.style.backgroundColor = "rgb(34, 34, 34)";
+            img1.src = "Assets/diamanteBranco/White_Diamond.webp";
+            img1.style.marginLeft = "55%";
+            img1.style.marginTop = "52px";
+            img1.style.height = "400px"
+        }
     }
 </script>

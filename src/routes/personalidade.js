@@ -1,8 +1,10 @@
-var express = require("../controllers/personalidadeController");
+var express = require("express");
 const { route } = require("./teste");
 var router = express.Router();
 
-router.post("/listar", function (req, res) {
+var personalidadeController = require("../controllers/personalidadeController");
+
+router.get("/listar/:fk_personalidade", function (req, res) {
     personalidadeController.listar(req, res);    
 });
 

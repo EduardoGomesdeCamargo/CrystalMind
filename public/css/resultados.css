@@ -93,11 +93,11 @@ html {
   padding: 20px;
   padding-left: 50px;
   margin-top: 70px;
-  background-color: #b02359;
   width: 90%;
-  height: 300px;
+  height: 350px;
   border-bottom-right-radius: 40px;
   border-top-right-radius: 40px;
+  /* background-color: rgb(223, 96, 164); */
 }
 
 .banner-gem-texto {
@@ -108,7 +108,12 @@ html {
   font-weight: bold;
   font-size: 20px;
 }
-
+#p_descricaoPersonalidade{
+  color: #ffffff;
+  font-weight: bold;
+  width: 50%;
+  font-size: 19px;
+}
 .banner-gem-texto h1 {
   font-size: 70px;
   margin-bottom: 0;
@@ -116,28 +121,28 @@ html {
 
 .banner-gem-texto h3 {
   margin-top: 0;
-  color: pink;
   font-size: 25px;
+  /* color: rgb(243, 181, 252); */
 }
 
-.garnetImg {
+.img1 {
   height: 350px;
   position: absolute;
   margin-left: 46%;
-  margin-top: 60px;
+  margin-top: 80px;
 }
 
-.garnetGlassesImg {
+.img2 {
   height: 250px;
   position: absolute;
   margin-left: 60%;
-  margin-top: 120px;
+  margin-top: 140px;
 }
 
 /* ------------------------CONTEÚDO-------------------- */
 .resultado-conteudo {
   color: rgb(57, 57, 57);
-  font-size: 18px;
+  font-size: 22px;
   padding: 100px 200px 20px 200px;
   text-align: justify;
 }
@@ -148,6 +153,7 @@ html {
 
 .conteudo-cadastrar {
   margin-top: 30px;
+  text-align: center;
 }
 .conteudo-cadastrar a{
   margin-top: 50px;

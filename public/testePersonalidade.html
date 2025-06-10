@@ -1056,7 +1056,7 @@
 
     function recuperarIdResultado() {
         console.log('recuperando o id da tabela resultados do usuário atual')
-        fetch(`/teste/listar/${sessionStorage.ID}`, { cache: 'no-store' }).then(function (resultado) {
+        fetch(`/teste/listar/${sessionStorage.FK_PERSONALIDADE}`, { cache: 'no-store' }).then(function (resultado) {
             if (resultado.ok) {
 
                 resultado.json().then(res => {

@@ -1,0 +1,147 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+:root {
+    --azul: #32b9cd;
+    --rosa: #fa5d92;
+    --rosa-claro: rgb(252, 158, 181);
+    --verde: rgb(49, 190, 2);
+    --vermelho: rgb(243, 0, 0);
+    --cinza: rgb(126, 125, 125);
+}
+
+body {
+    background: #fca9be;
+    background: linear-gradient(145deg, rgba(252, 169, 190, 1) 0%, rgba(214, 255, 255, 1) 100%);
+    margin: 0;
+    padding: 0;
+    font-family: "Poppins";
+    overflow: hidden;
+    padding-bottom: 50px;
+}
+/* ------------------------------------ MENU -------------------------------- */
+.header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: rgb(255, 255, 255);
+    border-bottom: 2px solid var(--rosa);
+    z-index: 1000;
+    display: flex;
+    justify-content: space-between;
+}
+
+.logo-position {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+.lista {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    padding: 10px 30px;
+}
+
+.logo img {
+    height: 50px;
+}
+
+.nav-list {
+    list-style: none;
+    display: flex;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+}
+
+.nav-list span {
+    font-size: 20px;
+    color: var(--rosa);
+}
+
+.nav-list li a {
+    padding: 10px 15px;
+    border: none;
+    border-radius: 8px;
+    color: var(--rosa);
+    text-decoration: none;
+    transition: 0.3s;
+    background-color: transparent;
+}
+
+.nav-list li a:hover {
+    background-color: var(--rosa);
+    color: rgb(255, 255, 255);
+    border: 2px solid var(--rosa);
+}
+
+.pagina-atual {
+    text-decoration: underline;
+    font-weight: 900;
+    color: var(--rosa);
+}
+
+/* KPIs */
+.div-kpis {
+    margin: 10px;
+    margin-top: 90px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-around;
+}
+
+.div-kpis div {
+    width: 18%;
+    padding: 13px;
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: var(--rosa) 2px solid;
+}
+
+.div-kpis div h2 {
+    text-align: center;
+    margin-bottom: 0;
+}
+
+/* GRÁFICOS */
+.div_graficos {
+    display: flex;
+    justify-content: space-evenly;
+    margin: 10px;
+}
+.div_graficos h2{
+    font-size: 20px;
+    text-align: center;
+}
+.div_graficos div {
+    margin: 15px;
+    background-color: rgb(255, 255, 255);
+    padding: 20px;
+    border-radius: 20px;
+    border: var(--rosa) solid 2px;
+    height: 400px;
+}
+.div_graficos section{
+    display: flex;
+    justify-content: center;
+    height: 85%;
+    margin-bottom: 15px;
+}
+.lista_usuarios {
+    width: 20%;
+}
+
+.div_radar {
+    width: 30%;
+}
+
+.div_barra {
+    width: 30%;
+}
+.grafico_radar{
+    height: 100px;
+}
