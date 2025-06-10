@@ -14,82 +14,115 @@
 </head>
 
 <body>
+
     <body onload="coletarDados()">
-        
-    <!-- MENU -->
-    <div class="header">
-        <div class="logo-position">
-            <div>
-                <a href="index.html" class="logo">
-                    <img src="Assets/crystalMindLogotipo.png" alt="Logo" />
-                </a>
+
+        <!-- MENU -->
+        <div class="header">
+            <div class="logo-position">
+                <div>
+                    <a href="index.html" class="logo">
+                        <img src="Assets/crystalMindLogotipo.png" alt="Logo" />
+                    </a>
+                </div>
+            </div>
+
+            <div class="lista">
+                <div>
+                    <ul class="nav-list">
+                        <li><a href="testePersonalidade.html">Teste de Personalidade</a></li>
+                        <li><a href="Resultados.html">Seus resultados</a></li>
+                        <li class="pagina-atual"><a href="dashboard.html">Dashboard</a></li>
+                        <li><a href="#">Criador</a></li>
+                        <span>|</span>
+                        <li><a href="Login.html"><img src="" alt="">Sair</a></li>
+                </div>
+                </ul>
             </div>
         </div>
 
-        <div class="lista">
+        <!-- KPIs -->
+        <div class="div-kpis">
             <div>
-                <ul class="nav-list">
-                    <li><a href="testePersonalidade.html">Teste de Personalidade</a></li>
-                    <li><a href="Resultados.html">Seus resultados</a></li>
-                    <li class="pagina-atual"><a href="dashboard.html">Dashboard</a></li>
-                    <li><a href="#">Criador</a></li>
-                    <span>|</span>
-                    <li><a href="Login.html"><img src="" alt="">Sair</a></li>
+                <p>Sua Personalidade:</p>
+                <h2>INTJ</h2>
             </div>
-            </ul>
-        </div>
-    </div>
 
-    <!-- KPIs -->
-    <div class="div-kpis">
-        <div>
-            <p>Sua Personalidade:</p>
-            <h2>INTJ</h2>
-        </div>
+            <div>
+                <p>Personalidade mais comum:</p>
+                <h2>INTJ</h2>
+            </div>
 
-        <div>
-            <p>Personalidade mais comum:</p>
-            <h2>INTJ</h2>
-        </div>
+            <div>
+                <p>Sua Gem:</p>
+                <h2>Lápis Lazúli</h2>
+            </div>
 
-        <div>
-            <p>Sua Gem:</p>
-            <h2>Lápis Lazúli</h2>
+            <div>
+                <p>Gem mais comum:</p>
+                <h2>Lápis Lazúli</h2>
+            </div>
         </div>
 
-        <div>
-            <p>Gem mais comum:</p>
-            <h2>Lápis Lazúli</h2>
-        </div>
-    </div>
+        <!-- GRÁFICOS E TABELA-->
+        <div class="div_graficos">
+            <div class="div_radar">
+                <h2>Porcentagem de seus Traços de Personalidade</h2>
+                <section>
+                    <canvas class="grafico" id="grafico_radar"></canvas>
+                </section>
+            </div>
+            <div class="div_barra">
+                <h2>Gems mais populares</h2>
+                <canvas id="grafico_barra"></canvas>
+            </div>
 
-    <!-- GRÁFICOS E TABELA-->
-    <div class="div_graficos">
-        <div class="div_radar">
-            <h2>Porcentagem de seus Traços de Personalidade</h2>
-            <section>
-                <canvas class="grafico" id="grafico_radar"></canvas>
-            </section>
+            <div class="lista_usuarios">
+                <h2>Usuários com a mesma personalidade:</h2>
+                <p>Eduardo Gomes de Camargo</p>
+                <p>Eduardo Gomes</p>
+                <p>Eduardo Gomes</p>
+                <p>Eduardo Gomes</p>
+                <p>Eduardo Gomes</p>
+                <p>Eduardo Gomes</p>
+                <p>Eduardo Gomes</p>
+                <p>Eduardo Gomes</p>
+            </div>
         </div>
-        <div class="div_barra">
-            <h2>Gems mais populares</h2>
-            <canvas id="grafico_barra"></canvas>
-        </div>
-
-        <div class="lista_usuarios">
-            <h2>Usuários com a mesma personalidade:</h2>
-            <canvas id="grafico_barra"></canvas>
-        </div>
-    </div>
-</body>
+    </body>
 
 </html>
 <script>
     function coletarDados() {
-        
-        if (sessionStorage.POR) {
-            
-        }
+
+        console.log('recuperando os campos das tabelas personalidade, gem e resultado')
+        fetch(`/personalidade/listar/${sessionStorage.FK_PERSONALIDADE}`, { cache: 'no-store' }).then(function (resultado) {
+            if (resultado.ok) {
+
+                resultado.json().then(res => {
+                    console.log(res);
+                    console.log(JSON.stringify(res));
+                    console.log("select da tabela personalidade executado com sucesso.")
+                    sessionStorage.ID_PERSONALIDADE = res[0].id_personalidade
+                    sessionStorage.PERSONALIDADE = res[0].personalidade
+                    sessionStorage.PALAVRA_CHAVE = res[0].palavra_chave
+                    sessionStorage.SINTESE = res[0].sintese
+                    sessionStorage.DESCRICAO = res[0].descricao
+                    sessionStorage.ID_GEM = res[0].id_gem
+                    sessionStorage.NOME_GEM = res[0].nome
+                    sessionStorage.SINTESE_GEM = res[0].sintese_gem
+                    sessionStorage.DESCRICAO_GEM = res[0].descricao_gem
+                });
+                console.log('Dados recuperados da tabela personalidade')
+                mostrarResultado();
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
     }
 
 
@@ -121,7 +154,7 @@
     const dataBarra = {
         labels: labelsBarra,
         datasets: [{
-            label: 'My first dataset',
+            label: 'Quantidade de ocorrências',
             backgroundColor: 'rgb(255, 99, 132)',
             borderColor: 'rgb(255, 99, 132)',
             data: [0, 10, 5, 2, 20, 30, 45],

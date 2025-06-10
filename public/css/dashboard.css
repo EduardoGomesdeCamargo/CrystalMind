@@ -133,6 +133,7 @@ body {
 }
 .lista_usuarios {
     width: 20%;
+    text-align: center;
 }
 
 .div_radar {

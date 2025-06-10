@@ -8,3 +8,5 @@ router.get("/listar/:fk_personalidade", function (req, res) {
 });
 
 module.exports = router;
+
+
