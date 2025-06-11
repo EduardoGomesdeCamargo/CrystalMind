@@ -28,7 +28,17 @@ function cadastrar(fk_usuario, fk_personalidade, porcentagemExtrovertido, porcen
 
 function atualizarResultado(id_resultado, fk_usuario, personalidade, personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao) {
     var instrucao = `
-    UPDATE resultado SET personalidade = '${personalidade}', porcentagemExtrovertido = ${porcentagemExtrovertido},  porcentagemIntrovertido = ${porcentagemIntrovertido}, porcentagemExtrovertido = ${porcentagemSensacao},  porcentagemIntrovertido = ${porcentagemIntuitivo},porcentagemExtrovertido = ${porcentagemThinking},  porcentagemIntrovertido = ${porcentagemFeeling}, porcentagemExtrovertido = ${porcentagemJulgamento},  porcentagemIntrovertido = ${porcentagemPercepcao} WHERE id_resultado = ${id_resultado};
+    UPDATE resultado SET fk_personalidade = '${personalidade}', 
+    porcentagemExtrovertido = ${porcentagemExtrovertido},  
+    porcentagemIntrovertido = ${porcentagemIntrovertido},
+    porcentagemSensacao = ${porcentagemSensacao},
+    porcentagemIntuitivo = ${porcentagemPercepcao},
+    porcentagemThinking = ${porcentagemIntuitivo},
+    porcentagemFeeling = ${porcentagemThinking},
+    porcentagemJulgamento = ${porcentagemFeeling}, 
+    porcentagemPercepcao = ${porcentagemJulgamento}
+     
+    WHERE id_resultado = ${id_resultado};
     `
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);

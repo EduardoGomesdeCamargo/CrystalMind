@@ -28,7 +28,7 @@
                 <div>
                     <ul class="nav-list">
                         <li><a href="testePersonalidade.html">Teste de Personalidade</a></li>
-                        <li><a href="Resultados.html">Seus resultados</a></li>
+                        <li class="pagina-atual"><a href="ResultadosCadastrado.html">Seus resultados</a></li>
                         <li><a href="dashboard.html">Dashboard</a></li>
                         <li><a href="#">Criador</a></li>
                         <span>|</span>
@@ -874,7 +874,7 @@
     }
     function mostrarResultado() {
         var personalidade = '';
-
+        console.log("Calculando resultado")
         // CALCULANDO DICOTOMIA E/I
         const totalEI = extrovertido.length + introvertido.length + neutroExtrovertido.length * 0.51 + neutroIntrovertido.length * 0.51;
 
@@ -918,7 +918,43 @@
             personalidade += 'P';
         }
 
-        sessionStorage.RESULTADO_PREVIO = personalidade;
+        // PASSANDO AS FOREING KEY PARA AS PERSONALIDADES
+
+        if (personalidade == 'ISTJ') {
+            var fk_personalidade = 1;
+
+        } else if (personalidade == 'ISFJ') {
+            var fk_personalidade = 2;
+        } else if (personalidade == 'INFJ') {
+            var fk_personalidade = 3;
+        } else if (personalidade == 'INTJ') {
+            var fk_personalidade = 4;
+        } else if (personalidade == 'ISTP') {
+            var fk_personalidade = 5;
+        } else if (personalidade == 'ISFP') {
+            var fk_personalidade = 6;
+        } else if (personalidade == 'INFP') {
+            var fk_personalidade = 7;
+        } else if (personalidade == 'INTP') {
+            var fk_personalidade = 8;
+        } else if (personalidade == 'ESTP') {
+            var fk_personalidade = 9;
+        } else if (personalidade == 'ESFP') {
+            var fk_personalidade = 10
+        } else if (personalidade == 'ENFP') {
+            var fk_personalidade = 11
+        } else if (personalidade == 'ENTP') {
+            var fk_personalidade = 12
+        } else if (personalidade == 'ESTJ') {
+            var fk_personalidade = 13
+        } else if (personalidade == 'ESFJ') {
+            var fk_personalidade = 14
+        } else if (personalidade == 'ENFJ') {
+            var fk_personalidade = 15
+        } else if (personalidade == 'ENTJ') {
+            var fk_personalidade = 16;
+        }
+        sessionStorage.FK_PERSONALIDADE = fk_personalidade;
 
         sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO = porcentagemExtrovertido;
         sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO = porcentagemIntrovertido;
@@ -937,35 +973,76 @@
 
     function atualizarResultado() {
 
-        fetch(`/teste/atualizarResultado/`, {
-            method: "PUT",
+        // Enviando o valor da nova input
+        fetch("/teste/atualizarResultado", {
+            method: "POST",
             headers: {
-                "Content-Type": "application/json"
+                "Content-Type": "application/json",
             },
             body: JSON.stringify({
-                descricao: textarea_descricao.value
+                // crie um atributo que recebe o valor recuperado aqui
+                // Agora vá para o arquivo routes/usuario.js
+                fk_usuarioServer: sessionStorage.ID,
+                fk_personalidade: sessionStorage.FK_PERSONALIDADE,
+                porcentagemExtrovertidoServer: sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO,
+                porcentagemIntrovertidoServer: sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO,
+                porcentagemSensacaoServer: sessionStorage.PORCENTAGEM_SENSASAO_PREVIO,
+                porcentagemIntuitivoServer: sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO,
+                porcentagemThinkingServer: sessionStorage.PORCENTAGEM_THINKING_PREVIO,
+                porcentagemFeelingServer: sessionStorage.PORCENTAGEM_FEELING_PREVIO,
+                porcentagemJulgamentoServer: sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO,
+                porcentagemPercepcaoServer: sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO
+            }),
+        })
+            .then(function (resposta) {
+                console.log("resposta: ", resposta);
+                if (resposta.ok) {
+                    console.log(resposta);
+                    console.log("Atualização dos dados do teste prévio executada na tabela resultados com sucesso");
+                    sessionStorage.RESULTADO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_INTROVERTIDO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_SENSASAO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_INTUITIVO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_THINKING_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_FEELING_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_JULGAMENTO_PREVIO = undefined;
+                    sessionStorage.PORCENTAGEM_PERCEPCAO_PREVIO = undefined;
+                } else {
+                    throw "Houve um erro ao tentar realizar o cadastro!";
+                }
             })
-        }).then(function (resposta) {
-
-            if (resposta.ok) {
-                window.alert("Post atualizado com sucesso pelo usuario de email: " + sessionStorage.getItem("EMAIL_USUARIO") + "!");
-                window.location = "/dashboard/mural.html"
-            } else if (resposta.status == 404) {
-                window.alert("Deu 404!");
-            } else {
-                throw ("Houve um erro ao tentar realizar a postagem! Código da resposta: " + resposta.status);
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-        });
+            .catch(function (resposta) {
+                console.log(`#ERRO: ${resposta}`);
+            });
 
         setTimeout(() => {
-            window.location = "Resultados.html";
+            recuperarIdResultado();
+        }, "1000");
+
+        setTimeout(() => {
+            window.location = "ResultadosCadastrado.html";
         }, "1000");
     }
 
     // Verificando se o usuário fez ou não o teste prévio e se deve ou não inserir o resultados do teste prévio no banco de dados 
     function verificarResultados() {
+        fetch(`/personalidade/listarPersonalidade/${sessionStorage.ID}`, { cache: 'no-store' }).then(function (resultado) {
+            if (resultado.ok) {
+
+                resultado.json().then(fk_personalidade => {
+                    console.log(fk_personalidade);
+                    sessionStorage.FK_PERSONALIDADE = fk_personalidade[0].fk_personalidade;
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+
         let validacaoTestePrevio = sessionStorage.PORCENTAGEM_EXTROVERTIDO_PREVIO;
         console.log(`Validação de teste previo (Se estiver undefined é porque o usuário não fez o teste prévio; caso contrário, ele fez o teste prévio): ${validacaoTestePrevio}`);
 

@@ -18,7 +18,7 @@ router.get("/verificar/:id_usuario", function (req, res) {
     testeController.verificar(req, res);
 })
 
-router.put("/atualizarResultado/:idAviso", function (req, res) {
+router.post("/atualizarResultado", function (req, res) {
     testeController.atualizarResultado(req, res);
 });
 

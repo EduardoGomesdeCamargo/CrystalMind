@@ -31,7 +31,7 @@
                 <div>
                     <ul class="nav-list">
                         <li><a href="testePersonalidade.html">Teste de Personalidade</a></li>
-                        <li><a href="Resultados.html">Seus resultados</a></li>
+                        <li><a href="ResultadosCadastrado.html">Seus resultados</a></li>
                         <li class="pagina-atual"><a href="dashboard.html">Dashboard</a></li>
                         <li><a href="#">Criador</a></li>
                         <span>|</span>
@@ -45,22 +45,22 @@
         <div class="div-kpis">
             <div>
                 <p>Sua Personalidade:</p>
-                <h2>INTJ</h2>
+                <h2 id="h2_personalidadeUsuario"></h2>
             </div>
 
             <div>
                 <p>Personalidade mais comum:</p>
-                <h2>INTJ</h2>
+                <h2 id="h2_personalidadeComum"></h2>
             </div>
 
             <div>
                 <p>Sua Gem:</p>
-                <h2>Lápis Lazúli</h2>
+                <h2 id="h2_gemUsuario"></h2>
             </div>
 
             <div>
                 <p>Gem mais comum:</p>
-                <h2>Lápis Lazúli</h2>
+                <h2 id="h2_gemComum"></h2>
             </div>
         </div>
 
@@ -74,19 +74,12 @@
             </div>
             <div class="div_barra">
                 <h2>Gems mais populares</h2>
-                <canvas id="grafico_barra"></canvas>
+                <canvas id="grafico_barra" height="220px"></canvas>
             </div>
 
             <div class="lista_usuarios">
                 <h2>Usuários com a mesma personalidade:</h2>
-                <p>Eduardo Gomes de Camargo</p>
-                <p>Eduardo Gomes</p>
-                <p>Eduardo Gomes</p>
-                <p>Eduardo Gomes</p>
-                <p>Eduardo Gomes</p>
-                <p>Eduardo Gomes</p>
-                <p>Eduardo Gomes</p>
-                <p>Eduardo Gomes</p>
+                <p id="p_usuarios"></p>
             </div>
         </div>
     </body>
@@ -95,26 +88,26 @@
 <script>
     function coletarDados() {
 
-        console.log('recuperando os campos das tabelas personalidade, gem e resultado')
-        fetch(`/personalidade/listar/${sessionStorage.FK_PERSONALIDADE}`, { cache: 'no-store' }).then(function (resultado) {
+        // RECUPERANDO os campos das tabelas personalidade, gem e resultado para o gráfico de radar e para as KPIs "sua personalidade" e "sua gem
+        console.log('recuperando os campos das tabelas personalidade, gem e resultado para o gráfico de radar e para as KPIs "sua personalidade" e "sua gem"');
+        fetch(`/dashboard/listar/${sessionStorage.FK_PERSONALIDADE}`, { cache: 'no-store' }).then(function (resultado) {
             if (resultado.ok) {
 
                 resultado.json().then(res => {
                     console.log(res);
                     console.log(JSON.stringify(res));
                     console.log("select da tabela personalidade executado com sucesso.")
+                    sessionStorage.PORCENTAGEM_EXTROVERTIDO = res[0].porcentagemExtrovertido
+                    sessionStorage.PORCENTAGEM_INTUICAO = res[0].porcentagemIntuitivo
+                    sessionStorage.PORCENTAGEM_LOGICA = res[0].porcentagemThinking
+                    sessionStorage.PORCENTAGEM_PERCEPCAO = res[0].porcentagemPercepcao
                     sessionStorage.ID_PERSONALIDADE = res[0].id_personalidade
                     sessionStorage.PERSONALIDADE = res[0].personalidade
-                    sessionStorage.PALAVRA_CHAVE = res[0].palavra_chave
-                    sessionStorage.SINTESE = res[0].sintese
-                    sessionStorage.DESCRICAO = res[0].descricao
                     sessionStorage.ID_GEM = res[0].id_gem
                     sessionStorage.NOME_GEM = res[0].nome
-                    sessionStorage.SINTESE_GEM = res[0].sintese_gem
-                    sessionStorage.DESCRICAO_GEM = res[0].descricao_gem
+                    plotarGraficoRadar();
                 });
                 console.log('Dados recuperados da tabela personalidade')
-                mostrarResultado();
             } else {
                 console.error('Nenhum dado encontrado ou erro na API');
             }
@@ -123,69 +116,134 @@
                 console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
             });
 
+        // RECUPERANDO OS DADOS PARA AS GEMS E PERSONALIDADES MAIS COMUNS
+        fetch(`/dashboard/listarUsuarios/${sessionStorage.FK_PERSONALIDADE}`, { cache: 'no-store' }).then(function (resultado) {
+            if (resultado.ok) {
+
+                resultado.json().then(usuarios => {
+                    console.log(usuarios);
+                    console.log(JSON.stringify(usuarios));
+                    console.log("select dos mais populares executado com sucesso.")
+                    plotarTabelaUsuarios(usuarios);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+
+        // RECUPERANDO O NOME DOS USUÁRIOS QUE POSSUEM A MESMA PERSONALIDADE
+        console.log('RECUPERANDO OS DADOS PARA AS GEMS E PERSONALIDADES MAIS COMUNS');
+        fetch(`/dashboard/listarPopulares/`, { cache: 'no-store' }).then(function (resultado) {
+            if (resultado.ok) {
+
+                resultado.json().then(maisPopulares => {
+                    console.log(maisPopulares);
+                    console.log(JSON.stringify(maisPopulares));
+                    console.log("select dos mais populares executado com sucesso.")
+                    plotarGraficoBarra(maisPopulares);
+                });
+            } else {
+                console.error('Nenhum dado encontrado ou erro na API');
+            }
+        })
+            .catch(function (error) {
+                console.error(`Erro na obtenção dos dados p/ gráfico: ${error.message}`);
+            });
+    }
+
+    function plotarGraficoBarra(maisPopulares) {
+        const labelsBarra = [];
+        const valoresBarra = [];
+
+        for (let i = 0; i < maisPopulares.length; i++) {
+            labelsBarra.push(maisPopulares[i].nome);
+            valoresBarra.push(maisPopulares[i].qtdPersonalidade);
+        }
+
+        const dataBarra = {
+            labels: labelsBarra,
+            datasets: [{
+                label: 'Quantidade de ocorrências',
+                backgroundColor: 'rgb(255, 99, 132)',
+                borderColor: 'rgb(255, 99, 132)',
+                data: valoresBarra,
+            }
+            ]
+        };
+
+        const config2 = {
+            type: 'bar',
+            data: dataBarra,
+            options: {}
+        };
+
+        const myChart2 = new Chart(
+            document.getElementById('grafico_barra'),
+            config2
+        );
+
+        h2_personalidadeUsuario.innerHTML = sessionStorage.PERSONALIDADE;
+        h2_gemUsuario.innerHTML = sessionStorage.NOME_GEM;
+
+        h2_personalidadeComum.innerHTML = maisPopulares[0].personalidade;
+        h2_gemComum.innerHTML = maisPopulares[0].nome;
     }
 
 
-    const labelsRadar = [
-        'Extroversão',
-        'Intuição',
-        'Lógica',
-        'Percepção',
-    ];
-    const labelsBarra = [
-        'Garnet',
-        'Febuary',
-        'March',
-        'April',
-        'May',
-        'June',
-    ];
+    function plotarGraficoRadar() {
 
-    const dataRadar = {
-        labels: labelsRadar,
-        datasets: [{
-            label: '% Traço de Personalidade',
-            backgroundColor: 'transparent',
-            borderColor: 'rgb(0, 0, 132)',
-            data: [80, 30, 29, 52],
-        }
-        ]
-    };
-    const dataBarra = {
-        labels: labelsBarra,
-        datasets: [{
-            label: 'Quantidade de ocorrências',
-            backgroundColor: 'rgb(255, 99, 132)',
-            borderColor: 'rgb(255, 99, 132)',
-            data: [0, 10, 5, 2, 20, 30, 45],
-        }
-        ]
-    };
+        const labelsRadar = [
+            'Extroversão',
+            'Intuição',
+            'Lógica',
+            'Percepção',
+        ];
 
-    const config = {
-        type: 'radar',
-        data: dataRadar,
-        options: {
-            elements: {
-                line: {
-                    borderWidth: 3
+
+        const dataRadar = {
+            labels: labelsRadar,
+            datasets: [{
+                label: '% Traço de Personalidade',
+                backgroundColor: 'rgba(255, 123, 174, 0.263)',
+                borderColor: 'rgb(205, 50, 153)',
+                data: [sessionStorage.PORCENTAGEM_EXTROVERTIDO, sessionStorage.PORCENTAGEM_INTUICAO, sessionStorage.PORCENTAGEM_LOGICA, sessionStorage.PORCENTAGEM_PERCEPCAO],
+            }
+            ]
+        };
+
+
+        const config = {
+            type: 'radar',
+            data: dataRadar,
+            options: {
+                scales: {
+                    r: {
+                        min: 0,
+                        max: 100,
+
+                        elements: {
+                            line: {
+                                borderWidth: 3
+                            }
+                        }
+                    },
                 }
             }
-        },
-    };
+        };
 
-    const config2 = {
-        type: 'bar',
-        data: dataBarra,
-        options: {}
-    };
+        const myChart = new Chart(
+            document.getElementById('grafico_radar'),
+            config
+        );
+    }
 
-    const myChart = new Chart(
-        document.getElementById('grafico_radar'),
-        config
-    );
-    const myChart2 = new Chart(
-        document.getElementById('grafico_barra'),
-        config2
-    );
+    function plotarTabelaUsuarios(usuarios) {
+        for (let i = 0; i < usuarios.length; i++) {
+            p_usuarios.innerHTML += `${usuarios[i].primeiro_nome} ${usuarios[i].sobrenome} <br><hr>`
+        }
+    }
+
 </script>

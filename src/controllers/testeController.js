@@ -148,6 +148,8 @@ function atualizarResultado(req, res) {
     testeModel.atualizarResultado(fk_usuario, personalidade, porcentagemExtrovertido, porcentagemIntrovertido, porcentagemSensacao, porcentagemIntuitivo, porcentagemThinking, porcentagemFeeling, porcentagemJulgamento, porcentagemPercepcao)
         .then(function (resposta) {
             res.status(200).send("Teste criado com sucesso");
+                console.log("estou dentro da testeController")
+
         }).catch(function (erro) {
             res.status(500).json(erro.sqlMessage);
         })

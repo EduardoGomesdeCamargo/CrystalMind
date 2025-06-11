@@ -8,6 +8,14 @@ function listar(fk_personalidade) {
     return database.executar(instrucao);
 }
 
+function listarPersonalidade(fk_personalidade) {
+    var instrucao = `
+    SELECT fk_personalidade FROM resultado WHERE fk_usuario = ${fk_personalidade};
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 module.exports = {
-    listar
+    listar,
+    listarPersonalidade
 }

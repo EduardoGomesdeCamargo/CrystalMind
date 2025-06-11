@@ -25,9 +25,25 @@ function listar(req, res) {
     }).catch(function (erro) {
         res.status(500).json(erro.sqlMessage);
     })
+}
 
+function listarPersonalidade(req, res) {
+    var fk_personalidade = req.params.fk_personalidade;
+
+    if (fk_personalidade == undefined) {
+        res.status(400).send("Seu fk_personalidade está undefined!");
+    }
+
+    personalidadeModel.listarPersonalidade(fk_personalidade).then(function (resultado) {
+        res.status(200).json(resultado);
+        console.log('id ', resultado[0].id_resultado)
+
+    }).catch(function (erro) {
+        res.status(500).json(erro.sqlMessage);
+    })
 }
 
 module.exports = {
     listar,
+    listarPersonalidade
 }
