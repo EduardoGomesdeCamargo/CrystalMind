@@ -145,17 +145,9 @@ SELECT COUNT(personalidade) AS qtdPersonalidade, personalidade, fk_personalidade
 SELECT primeiro_nome, sobrenome FROM usuario JOIN resultado ON id = fk_usuario
 	WHERE fk_personalidade = 5;
     
-SELECT fk_personalidade FROM resultado WHERE fk_usuario = 16;
-    
-
-
-    
-    
-    
-SET FOREIGN_KEY_CHECKS = 1;
-truncate table resultado;
-select * from personalidade;
 select id_personalidade, personalidade, palavra_chave from personalidade;
+    
+select * from personalidade;
 select * from resultado;
 select * from usuario;
 select * from  gem;
