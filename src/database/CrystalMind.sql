@@ -146,7 +146,8 @@ SELECT primeiro_nome, sobrenome FROM usuario JOIN resultado ON id = fk_usuario
 	WHERE fk_personalidade = 5;
     
 select id_personalidade, personalidade, palavra_chave from personalidade;
-    
+SELECT * FROM personalidade JOIN gem ON id_personalidade = pk_personalidade WHERE id_personalidade = '13';
+
 select * from personalidade;
 select * from resultado;
 select * from usuario;
