@@ -15,11 +15,10 @@ Ao final do teste, o resultado é um tipo de personalidade composto por quatro l
 
 ## 💎 Conexão com Pedras e Gems
 
-Cada tipo MBTI é associado a uma **pedra preciosa ou gema**, refletindo suas principais características. Para tornar a experiência mais divertida e temática, cada pedra também está conectada a uma **personagem Gem do desenho Steven Universe**, que representa traços similares de personalidade.
+Cada tipo MBTI é associado a uma **personagem Gem do desenho Steven Universo**, que representa traços similares de personalidade.
 
-Exemplo:
-- **INFP** → Ametista → *Amethyst*
-- **ENTJ** → Granada → *Garnet*
+Exemplo: **INFP** → Ametista
+- **ENTJ** → Garnet 
 
 ## 🎯 Objetivo
 
@@ -27,13 +26,6 @@ O projeto busca oferecer:
 - Um teste acessível e divertido
 - Uma ponte entre psicologia e cultura pop
 - Uma interface amigável com resultados visuais e significativos
-
-## 🚧 Em desenvolvimento
-
-Funcionalidades futuras incluem:
-- Resultados personalizados com imagens das Gems
-- Análise gráfica das tendências do usuário
-- Compatibilidade com mobile
 
 ---
 
